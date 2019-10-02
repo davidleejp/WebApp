@@ -2,6 +2,7 @@
 
 <head>
     <title>PwaTest</title>
+    <meta name="apple-mobile-web-app-capable" content="yes">
     <link rel="manifest" href="./manifest.json" />
     <script language="javascript">
         if ('serviceWorker' in navigator) {
@@ -22,6 +23,9 @@
 </head>
 
 <body>
+    <p>
+        <span>写真アップロード</span><input type="file" accept="image/*">
+    </p>
     <p align="center">
         <a href="PwaTest2.html">PwaTest2</a>
     </p>
