@@ -1,7 +1,6 @@
 // service-worker.js
 self.addEventListener('install', function(e) {
   console.log('[ServiceWorker] Install');
-  alert('Installed');
 });
 
 self.addEventListener('activate', function(e) {
