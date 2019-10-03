@@ -1,8 +1,11 @@
-<html>
+<html lang="ja">
 
 <head>
     <title>PwaTest</title>
-    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="charset" content="UTF-8" />
+    <meta name="apple-mobile-web-app-capable" content="yes" />
+    <meta name="viewport" content="width=device-width,initial-scale=1.0,minimum-scale=1.0,maximum-scale=1.0,user-scalable=no" />
+
     <link rel="manifest" href="./manifest.json" />
     <script language="javascript">
         if ('serviceWorker' in navigator) {
@@ -14,7 +17,7 @@
         }
     </script>
     <style>
-        p {
+        table {
             font-size: 12px;
             font-family: Verdana, Geneva, Tahoma, sans-serif;
             color: #090696
@@ -23,8 +26,30 @@
 </head>
 
 <body>
+    <table with="80%" height="60px">
+        <th>
+            <td>検証項目</td>
+            <td></td>
+        </th>
+        <tr>
+            <td>
+                写真アップロード
+            </td>
+            <td>
+                <input type="file" accept="image/*" capture="camera" />
+            </td>
+        </tr>
+        <tr>
+                <td>
+                    録音アップロード
+                </td>
+                <td>
+                    <input type="file" accept="audio/*" capture="microphone" />
+                </td>
+            </tr>
+    </table>
     <p>
-        <span>写真アップロード</span><input type="file" accept="image/*">
+        <span></span>
     </p>
     <p align="center">
         <a href="PwaTest2.html">PwaTest2</a>
