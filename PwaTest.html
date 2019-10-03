@@ -4,9 +4,13 @@
     <title>PwaTest</title>
     <meta name="charset" content="UTF-8" />
     <meta name="apple-mobile-web-app-capable" content="yes" />
-    <meta name="viewport" content="width=device-width,initial-scale=1.0,minimum-scale=1.0,maximum-scale=1.0,user-scalable=no" />
+    <meta name="viewport"
+        content="width=device-width,initial-scale=1.0,minimum-scale=1.0,maximum-scale=1.0,user-scalable=no" />
 
     <link rel="manifest" href="./manifest.json" />
+    <script language="javascrppt" src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js" />
+    <script language="javascrppt" src="./JS/Audio_API.js" />
+
     <script language="javascript">
         if ('serviceWorker' in navigator) {
             navigator.serviceWorker
@@ -28,8 +32,8 @@
 <body>
     <table with="80%" height="60px">
         <th>
-            <td>検証項目</td>
-            <td></td>
+        <td>検証項目</td>
+        <td></td>
         </th>
         <tr>
             <td>
@@ -40,13 +44,18 @@
             </td>
         </tr>
         <tr>
-                <td>
-                    録音アップロード
-                </td>
-                <td>
-                    <input type="file" accept="audio/*" capture="microphone">
-                </td>
-            </tr>
+            <td>
+                録音アップロード
+            </td>
+            <td>
+                <!-- <input type="file" accept="audio/*" capture="microphone"> -->
+                <input type="button" id="btnRecordStart" value="録音開始" />
+                &nbsp;
+                <input type="button" id="btnRecordStop" value="録音終了" />
+                &nbsp;
+                <audio id="player" controls></audio>
+            </td>
+        </tr>
     </table>
     <p>
         <span></span>
