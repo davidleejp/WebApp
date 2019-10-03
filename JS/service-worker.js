@@ -1,4 +1,5 @@
 // service-worker.js
+alert('test version');
 self.addEventListener('install', function(e) {
   console.log('[ServiceWorker] Install');
   alert('Installed');
