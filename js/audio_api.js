@@ -100,16 +100,16 @@ $(function() {
      reader.readAsDataURL(blob);
      reader.onloadend = function() {
          base64data = reader.result;
-         // console.log('base64data');
-         // console.log(base64data);
+         console.log('base64data');
+         console.log(base64data);
         wave_tag.value = base64data;
      };
 
      let myURL = window.URL || window.webkitURL;
      let url = myURL.createObjectURL(blob);
 
-     // console.log('wavefile');
-     // console.log(url);
+     console.log('wavefile');
+     console.log(url);
 
      // audioタグに録音データをセット
      let player = document.getElementById('player');
