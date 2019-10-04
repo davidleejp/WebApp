@@ -27,50 +27,29 @@
             margin: 0px 4px;
             padding: 2px;
             height: 25px;
-            max-width: 50px;
+            width:80px;
+            max-width: 80px;
             border:solid 1px #ddd;
+            float: left;
+        }
+        button.btn {
+            width:80px;
+            max-width: 80px;
+            border:solid 1px #ddd;
+            float: left;
         }
     </style>
 </head>
 
 <body>
-    <table with="80%" height="60px">
-        <th>
-        <td colspan="2">ユーザーログイン</td>
-        </th>
-        <tr>
-            <td>
-                ユーザーID
-            </td>
-            <td>
-                <input type="text" id="txtUserName" name="userName" class="text" maxlength="32" />
-                <span class="required">*</span>
-            </td>
-        </tr>
-        <tr>
-            <td>
-                ユーザーパスワード
-            </td>
-            <td>
-                <input type="password" id="txtUserPwd" name="userPwd" class="text" maxlength="16" />
-                <span class="required">*</span>
-            </td>
-        </tr>
-        <tr>
-            <td colspan="2" width="100%">
-                <button class="btn">ログイン</button>
-                <span>
-                    <a href="./forgot_pwd.html" class="info">パスワードを忘れた場合</a>
-                </span>
-            </td>
-        </tr>
-    </table>
-    <p>
-        <span></span>
-    </p>
-    <p align="center">
-        <a href="PwaTest2.html">PwaTest2</a>
-    </p>
+    <div class="header">現場支援システム</div>
+    <div class="cotent">
+        <input type="text" id="txtUserName" name="userName" class="text" maxlength="32" />
+        <input type="password" id="txtUserPwd" name="userPwd" class="text" maxlength="16" />
+        <button class="btn">ログイン</button>
+        <a href="./forgot_pwd.html" class="info">パスワードを忘れた場合</a>
+    </div>
+    <div class="footer"></div>
 </body>
 
 </html>
