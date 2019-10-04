@@ -7,9 +7,39 @@
     <meta name="viewport"
         content="width=device-width,initial-scale=1.0,minimum-scale=1.0,maximum-scale=1.0,user-scalable=no" />
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <script>
+    $(function(){
+        // login 処理
+        $("#btnLogin").click(function(){
+            let userName, userPwd = "";
+            userName = $("#txtUserName").val();
+            userPwd = $("#txtUserPwd").val();
+            console.log("username:"+ userName +", userpwd:" + userPwd);
+
+            location.href = "./PwaTest.html";
+            
+        })
+    })
+    </script>
     <style>
         * {
             font-family: Verdana, Geneva, Tahoma, sans-serif;
+        }
+
+        body {
+            text-align: center;
+        }
+
+        div.header, div.content, div.footer {
+            margin: 0 auto;
+            width: 200px;
+            max-width: 200px;
+        }
+
+        div.header {
+            font-size: 14px;
+            font-weight: bold;
+            color: #0d0d0d;
         }
 
         span.required {
@@ -19,36 +49,36 @@
 
         input.text {
             font-size: 12px;
-            margin: 0px 4px;
             padding: 2px;
             height: 25px;
             width:100px;
             max-width: 120px;
             border:solid 1px #ddd;
-            float: left;
         }
         button.btn {
-            width:80px;
-            max-width: 80px;
-            border:solid 1px #ddd;
-            float: left;
+            width:100px;
+            max-width: 120px;
+            border:solid 1px #0d0d0d;
+            height: 25px;
+            background-color:darkseagreen;
         }
         a.info {
             font-size:10px;
         }
         ul {
-            margin:4px;
-            line-height: 150%;
+            margin:0px;
+            padding: 0px;
+            line-height: 30px;
         }
         ul li {
-            list-style: none;
+            list-style-type: none;
         }
     </style>
 </head>
 
 <body>
     <div class="header">現場支援システム</div>
-    <div class="cotent">
+    <div class="content">
         <ul>
             <li>
                 <input type="text" id="txtUserName" name="userName" class="text" maxlength="32" />
@@ -57,7 +87,7 @@
                 <input type="password" id="txtUserPwd" name="userPwd" class="text" maxlength="16" />
             </li>
             <li>
-                <button class="btn">ログイン</button>
+                <button class="btn" id = "btnLogin">ログイン</button>
             </li>
             <li>
                 <a href="./forgot_pwd.html" class="info">パスワードを忘れた場合</a>
