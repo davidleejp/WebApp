@@ -1,0 +1,83 @@
+<html lang="ja">
+
+<head>
+    <title>Login</title>
+    <meta name="charset" content="UTF-8" />
+    <meta name="apple-mobile-web-app-capable" content="yes" />
+    <meta name="viewport"
+        content="width=device-width,initial-scale=1.0,minimum-scale=1.0,maximum-scale=1.0,user-scalable=no" />
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <style>
+        * {
+            font-family: Verdana, Geneva, Tahoma, sans-serif;
+        }
+
+        body {
+            text-align: center;
+        }
+
+        div.header, div.content, div.footer {
+            margin: 0 auto;
+            width: 200px;
+            max-width: 200px;
+        }
+
+        div.header {
+            font-size: 14px;
+            font-weight: bold;
+            color: #0d0d0d;
+            margin-top: 40px;
+        }
+
+        span.required {
+            color: #ff0000;
+            font-size: 10px;
+        }
+
+        input.text {
+            font-size: 12px;
+            padding: 2px;
+            height: 25px;
+            width:100px;
+            max-width: 120px;
+            border:solid 1px #ddd;
+        }
+        button.btn {
+            width:100px;
+            max-width: 120px;
+            border:solid 1px #0d0d0d;
+            height: 25px;
+            background-color:darkseagreen;
+        }
+        a.info {
+            font-size:10px;
+        }
+        ul {
+            margin:0px;
+            padding: 0px;
+            line-height: 30px;
+        }
+        ul li {
+            list-style-type: none;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="header">
+        <div class="nav" style="display:none"><a href="javascript:void(0)">&lt;</a></div>
+        <div class="title">今日の作業一覧</div>
+    </div>
+    <div class="content">
+        <ul>
+            <li>
+                <div class="item">
+                    <div></div>
+                </div>
+            </li>
+        </ul>
+    </div>
+    <div class="footer"></div>
+</body>
+
+</html>
