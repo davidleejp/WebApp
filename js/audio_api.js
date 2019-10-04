@@ -101,7 +101,7 @@ $(function() {
      reader.onloadend = function() {
          base64data = reader.result;
          console.log('base64data');
-         console.log(base64data);
+         // console.log(base64data);
         wave_tag.value = base64data;
      };
 
