@@ -32,7 +32,8 @@ self.addEventListener('install', function(e) {
     cache => cache.addAll(cacheResources)
   );
   // 待機状態のswがあれば、強制終了
-  e.waitUntil(cachePromise).then(() => self.skipWaiting());
+  e.waitUntil(cachePromise);
+  return self.skipWaiting();
   console.log('[ServiceWorker] Cache Ended');
 });
 
@@ -50,7 +51,8 @@ self.addEventListener('activate', function(e) {
         }
       }))
     );
-  e.waitUntil(Promise.all([cachePromise])).then(() => self.clients.claim());
+  e.waitUntil(cachePromise);
+  return self.clients.claim();
 });
 
 // fetchイベント：リソースをアクセスすると、cacheにある場合、そのまま返す、存在しない場合、WEBサーバーへアクセス
