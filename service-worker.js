@@ -1,8 +1,9 @@
 // service-worker.js
 
+// ドメイン名称
+var domainNM = 'https://davidleetre.github.io';
 // リソースCacheName
 var cacheName4Res = 'KDKApp_V1';
-
 // WebAPI CacheName
 var cacheName4API = 'KDKApi_V1';
 
@@ -52,28 +53,28 @@ self.addEventListener('activate', function(e) {
 
 // fetchイベント：リソースをアクセスすると、cacheにある場合、そのまま返す、存在しない場合、WEBサーバーへアクセス
 self.addEventListener('fetch', function(e) {
-  console.log('[ServiceWorker] Fetch：' + e.request.url);
+  let requestUrl = e.request.url;
+  console.log('[ServiceWorker] Fetch：' + requestUrl);
 
-  let needCache = cacheRequestUrls.some(url => e.request.url.indexOf(url) > -1);
+  let needCache = cacheRequestUrls.some(url => requestUrl.indexOf(url) > -1);
   if ( needCache ) {
     caches.open(cacheName4API).then(
       cache => fetch(e.request).then(
         response => {
-          cache.put(e.request.url, response.clone());
+          cache.put(requestUrl, response.clone());
           return response;
       })
     )
   }
   else {
-    e.respondWith(caches.match(e.request).then(
+    e.respondWith(caches.match(requestUrl).then(
       cacheResponse => {
         // 存在する場合、リターン
         if (cacheResponse) {
           return cacheResponse;
         }
         // cacheに追加
-        var fetchRequest = e.request.clone();
-        fetch(fetchRequest).then(
+        fetch(e.request).then(
           response => {
             // responseチェック
             if ( !response || response.status !== 200 || response.type !== 'basic' ) {
@@ -82,10 +83,10 @@ self.addEventListener('fetch', function(e) {
             
             // cacheに追加
             var response2Cache = response.clone();
-            caches.open(cacheName4Res).then(cache => cache.put(e.request, response2Cache));
+            caches.open(cacheName4Res).then(cache => cache.put(requestUrl, response2Cache));
             return response;
           }
-        ).catch(err => {throw err});
+        );
       }).catch(
       err => {
       console.log ('cache not exists')
