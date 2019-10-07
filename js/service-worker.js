@@ -45,10 +45,13 @@ self.addEventListener('fetch', function(e) {
   console.log('[ServiceWorker] Fetch');
 
   e.responseWith(caches.match(e.request).then(
-      cache => cache || fetch(e.request)
-    ).catch(
+      cache => {
+        console.log(e.request);
+        return cache || fetch(e.request);
+      }).catch(
       err => {
       console.log ('cache not exists')
       return fetch(e.request);
-    }));
+    })
+  );
 });
