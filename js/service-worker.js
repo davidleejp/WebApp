@@ -8,11 +8,12 @@ var cacheName4API = 'KDKApi_V1';
 
 // cache必要なリソース
 var cacheResources = [
-  '/WebApp/' ,
-  '/WebApp/login.html' ,
-  '/WebApp/PwaTest.html' ,
-  '/WebApp/js/audio_api.js' ,
-  '/WebApp/js/service-worker.js'
+  '/WebApp/', 
+  '/WebApp/login.html', 
+  '/WebApp/PwaTest.html', 
+  '/WebApp/js/audio_api.js', 
+  '/WebApp/js/service-worker.js', 
+  '/WebApp/image/lifecycle.gif'
 ];
 
 // cache必要なWEBAPI　url
