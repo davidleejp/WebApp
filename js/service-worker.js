@@ -15,7 +15,9 @@ self.addEventListener('install', function(e) {
   console.log('[ServiceWorker] Install');
 
   var cachePromise = caches.open(cacheName).then(
-    cache => cache.addAll(cacheResources)
+    cache => cache.addAll(
+      cacheResources.map(url => new Request(url, {credentials: 'same-origin'}))
+      )
   );
   e.waitUntil(cachePromise);
 });
