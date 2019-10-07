@@ -42,7 +42,7 @@ self.addEventListener('fetch', function(e) {
 
   e.responseWith(caches.match(e.request).then(
       cache => cache || fetch(e.request)
-    ).cache(
+    ).catch(
       err => {
       console.log ('cache not exists')
       return fetch(e.request);
