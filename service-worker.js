@@ -1,7 +1,7 @@
 // service-worker.js
 
 // リソースCacheName
-var cacheName4Res = 'KDKApp_V1';
+var cacheName4Res = 'KDKApp_V2';
 
 // WebAPI CacheName
 var cacheName4API = 'KDKApi_V1';
@@ -12,7 +12,6 @@ var cacheResources = [
   '/WebApp/login.html', 
   '/WebApp/PwaTest.html', 
   '/WebApp/js/audio_api.js', 
-  '/WebApp/js/service-worker.js', 
   '/WebApp/image/lifecycle.gif'
 ];
 
@@ -24,14 +23,13 @@ var cacheRequestUrls = [
 // installイベント：必要なリソースをcacheに投入する
 self.addEventListener('install', function(e) {
   console.log('[ServiceWorker] Install');
-
+  console.log('[ServiceWorker] Cache Start');
+  // cacheResources.map(url => new Request(url, {credentials: 'same-origin'}))
   var cachePromise = caches.open(cacheName4Res).then(
-    cache => cache.addAll(
-      //cacheResources.map(url => new Request(url, {credentials: 'same-origin'}))
-      cacheResources
-    )
+    cache => cache.addAll(cacheResources)
   );
   e.waitUntil(cachePromise);
+  console.log('[ServiceWorker] Cache Ended');
 });
 
 // activeイベント：cacheのkeysにより、cacheのリソースを更新する
