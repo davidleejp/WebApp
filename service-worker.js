@@ -3,7 +3,7 @@
 // ドメイン名称
 var domainNM = 'davidleetre.github.io';
 // リソースCacheName
-var cacheName4Res = 'KDKApp_V1';
+var cacheName4Res = 'KDKApp_V2';
 // WebAPI CacheName
 var cacheName4API = 'KDKApi_V1';
 
