@@ -94,6 +94,11 @@ self.addEventListener('fetch', function(e) {
           // return fetch(e.request);
         });
       })
-    );
+    ).catch(
+      err => {
+      console.log ('cache not exists')
+      return new Response("not found this page");
+      // return fetch(e.request);
+    });
   }
 });
