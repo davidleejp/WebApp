@@ -86,14 +86,25 @@ self.addEventListener('fetch', function(e) {
             var response2Cache = response.clone();
             caches.open(cacheName4Res).then(cache => cache.put(e.request, response2Cache));
             return response;
-          }
+          }, OutputErrResponse('Page not found !', 404)
         );
-      }).catch(
-        err => {
-        console.log ('cache not exists')
-        return new Response("not found this page");
-        // return fetch(e.request);
-      })
-    );
+      }).catch(err => OutputErrResponse(err, 503))
+  )}
+})
+
+// 異常対処
+function OutputErrResponse(errMsg, errNum) {
+  console.log('Error occurred');
+  if (typeof(errMsg) == 'undefined' || err == '') {
+    errMsg = 'Service Unavailable';
+    errNum = 503;
   }
-});
+  errMsg = '<h1>' + errMsg + '</h1>';
+  return new Response(errMsg, {
+    status: errNum,
+    statusText: 'Service Unavailable',
+    headers: new Headers({
+      'Content-Type': 'text/html'
+    })
+  });
+}
