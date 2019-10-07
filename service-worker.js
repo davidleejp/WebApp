@@ -1,7 +1,7 @@
 // service-worker.js
 
 // ドメイン名称
-var domainNM = 'https://davidleetre.github.io';
+var domainNM = 'davidleetre.github.io';
 // リソースCacheName
 var cacheName4Res = 'KDKApp_V1';
 // WebAPI CacheName
@@ -55,6 +55,7 @@ self.addEventListener('activate', function(e) {
 self.addEventListener('fetch', function(e) {
   let requestUrl = e.request.url;
   console.log('[ServiceWorker] Fetch：' + requestUrl);
+  if ( !requestUrl.match( domainNM ) ) return;
 
   let needCache = cacheRequestUrls.some(url => requestUrl.indexOf(url) > -1);
   if ( needCache ) {
