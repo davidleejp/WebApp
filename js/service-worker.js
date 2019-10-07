@@ -7,7 +7,8 @@ var cacheName = 'KDKApp_V1';
 var cacheResources = [
   '/WebApp/' ,
   '/WebApp/PwaTest.html' ,
-  '/WebApp/js/audio_api.js'
+  '/WebApp/js/audio_api.js' ,
+  '/WebApp/js/service-worker.js'
 ]
 
 // installイベント：必要なリソースをcacheに投入する
