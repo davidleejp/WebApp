@@ -87,12 +87,13 @@ self.addEventListener('fetch', function(e) {
             caches.open(cacheName4Res).then(cache => cache.put(e.request, response2Cache));
             return response;
           }
-        );
-      }).catch(
-      err => {
-      console.log ('cache not exists')
-      return fetch(e.request);
-    })
+        ).catch(
+          err => {
+          console.log ('cache not exists')
+          return new Response("not found this page");
+          // return fetch(e.request);
+        });
+      })
     );
   }
 });
