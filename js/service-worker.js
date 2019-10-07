@@ -6,6 +6,7 @@ var cacheName = 'KDKApp_V1';
 // Cache Resources
 var cacheResources = [
   '/WebApp/' ,
+  '/WebApp/login.html' ,
   '/WebApp/PwaTest.html' ,
   '/WebApp/js/audio_api.js' ,
   '/WebApp/js/service-worker.js'
