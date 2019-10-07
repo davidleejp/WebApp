@@ -12,6 +12,7 @@ var cacheResources = [
   '/WebApp/login.html', 
   '/WebApp/manifest.json', 
   '/WebApp/PwaTest.html', 
+  '/WebApp/PwaTest2.html', 
   '/WebApp/js/audio_api.js', 
   '/WebApp/image/lifecycle.gif'
 ];
