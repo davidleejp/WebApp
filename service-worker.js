@@ -66,8 +66,26 @@ self.addEventListener('fetch', function(e) {
   }
   else {
     e.respondWith(caches.match(e.request).then(
-      cache => {
-        return cache || fetch(e.request);
+      cacheResponse => {
+        // 存在する場合、リターン
+        if (cacheResponse) {
+          return cacheResponse;
+        }
+        // cacheに追加
+        var fetchRequest = e.request.clone();
+        fetch(fetchRequest).then(
+          response => {
+            // responseチェック
+            if ( !response || response.status !== 200 || response.type !== 'basic' ) {
+              return response;
+            }
+            
+            // cacheに追加
+            var response2Cache = response.clone();
+            caches.open(cacheName4Res).then(cache => cache.put(e.request, response2Cache));
+            return response;
+          }
+        );
       }).catch(
       err => {
       console.log ('cache not exists')
