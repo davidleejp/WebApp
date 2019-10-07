@@ -51,8 +51,7 @@ self.addEventListener('activate', function(e) {
 
 // fetchイベント：リソースをアクセスすると、cacheにある場合、そのまま返す、存在しない場合、WEBサーバーへアクセス
 self.addEventListener('fetch', function(e) {
-  console.log('[ServiceWorker] Fetch');
-  console.log('URL：' + e.request.url);
+  console.log('[ServiceWorker] Fetch：' + e.request.url);
 
   let needCache = cacheRequestUrls.some(url => e.request.url.indexOf(url) > -1);
   if ( needCache ) {
@@ -67,7 +66,6 @@ self.addEventListener('fetch', function(e) {
   else {
     e.respondWith(caches.match(e.request).then(
       cache => {
-        console.log(e.request);
         return cache || fetch(e.request);
       }).catch(
       err => {
