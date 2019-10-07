@@ -89,6 +89,7 @@ self.addEventListener('fetch', function(e) {
             // cacheに追加
             if ( resCacheFlg ) {
               caches.open(cacheName4Res).then(cache => cache.put(e.request, response.clone()));
+              console.log('Cached：' + requestUrl);
             }
             return response;
           }, OutputErrResponse('Page not found !', 404)
