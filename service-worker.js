@@ -62,13 +62,13 @@ self.addEventListener('fetch', function(e) {
     caches.open(cacheName4API).then(
       cache => fetch(e.request).then(
         response => {
-          cache.put(requestUrl, response.clone());
+          cache.put(event.request, response.clone());
           return response;
       })
     )
   }
   else {
-    e.respondWith(caches.match(requestUrl).then(
+    e.respondWith(caches.match(e.request).then(
       cacheResponse => {
         // 存在する場合、リターン
         if (cacheResponse) {
@@ -84,7 +84,7 @@ self.addEventListener('fetch', function(e) {
             
             // cacheに追加
             var response2Cache = response.clone();
-            caches.open(cacheName4Res).then(cache => cache.put(requestUrl, response2Cache));
+            caches.open(cacheName4Res).then(cache => cache.put(e.request, response2Cache));
             return response;
           }
         );
