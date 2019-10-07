@@ -9,7 +9,7 @@ var cacheName4API = 'KDKApi_V1';
 
 // cache必要なリソース
 var cacheResources = [
-  // '/WebApp/', 
+  '/WebApp/', 
   '/WebApp/login.html', 
   '/WebApp/manifest.json', 
   '/WebApp/PwaTest.html', 
