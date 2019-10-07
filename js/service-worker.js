@@ -1,10 +1,10 @@
 // service-worker.js
 
 // CacheName
-const cacheName = 'KDKApp_V1';
+var cacheName = 'KDKApp_V1';
 
 // Cache Resources
-const cacheResources = [
+var cacheResources = [
   '/' ,
   './PwaTest.html' ,
   './js/audio_api.js'
@@ -17,7 +17,7 @@ self.addEventListener('install', function(e) {
   var cachePromise = caches.open(cacheName).then(
     cache => cache.addAll(
       cacheResources.map(url => new Request(url, {credentials: 'same-origin'}))
-      )
+    )
   );
   e.waitUntil(cachePromise);
 });
