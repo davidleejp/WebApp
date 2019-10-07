@@ -94,7 +94,7 @@ self.addEventListener('fetch', function(e) {
       ).catch(
         err => {
           console.error(err);
-          return cache.match(e.request);
+          return caches.match(e.request);
         }
       )
     )
