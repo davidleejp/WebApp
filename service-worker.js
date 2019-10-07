@@ -1,7 +1,7 @@
 // service-worker.js
 
 // リソースCacheName
-var cacheName4Res = 'KDKApp_V2';
+var cacheName4Res = 'KDKApp_V1';
 
 // WebAPI CacheName
 var cacheName4API = 'KDKApi_V1';
@@ -10,6 +10,7 @@ var cacheName4API = 'KDKApi_V1';
 var cacheResources = [
   '/WebApp/', 
   '/WebApp/login.html', 
+  '/WebApp/manifest.json', 
   '/WebApp/PwaTest.html', 
   '/WebApp/js/audio_api.js', 
   '/WebApp/image/lifecycle.gif'
