@@ -7,7 +7,7 @@ var cacheName = 'KDKApp_V1';
 var cacheResources = [
   '/WebApp/' ,
   '/WebApp/PwaTest.html' ,
-  'WebApp/js/audio_api.js'
+  '/WebApp/js/audio_api.js'
 ]
 
 // installイベント：必要なリソースをcacheに投入する
@@ -16,7 +16,8 @@ self.addEventListener('install', function(e) {
 
   var cachePromise = caches.open(cacheName).then(
     cache => cache.addAll(
-      cacheResources.map(url => new Request(url, {credentials: 'same-origin'}))
+      //cacheResources.map(url => new Request(url, {credentials: 'same-origin'}))
+      cacheResources
     )
   );
   e.waitUntil(cachePromise);
