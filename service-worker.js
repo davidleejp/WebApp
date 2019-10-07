@@ -63,8 +63,6 @@ self.addEventListener('fetch', function(e) {
 
   // APICache対象フラグ
   let apiCacheFlg = cacheRequestUrls.some(url => requestUrl.indexOf(url) > -1);
-  // リソースCacheフラグ
-  let resCacheFlg = cacheResources.some(url => requestUrl.indexOf(url) > -1);
 
   if ( apiCacheFlg ) {
     caches.open(cacheName4API).then(
@@ -90,7 +88,7 @@ self.addEventListener('fetch', function(e) {
               () => cache.put(e.request, responseClone) // 追加
             )
           );
-          console.log('Cached：' + requestUrl);
+          // console.log('Cached：' + requestUrl);
           return response;
         }
       ).catch(
