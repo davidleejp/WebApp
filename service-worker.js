@@ -3,7 +3,7 @@
 // ドメイン名称
 var domainNM = 'davidleetre.github.io';
 // リソースCacheName
-var cacheName4Res = 'KDKApp_V2';
+var cacheName4Res = 'KDKApp_V1';
 // WebAPI CacheName
 var cacheName4API = 'KDKApi_V1';
 
@@ -31,7 +31,8 @@ self.addEventListener('install', function(e) {
   var cachePromise = caches.open(cacheName4Res).then(
     cache => cache.addAll(cacheResources)
   );
-  e.waitUntil(cachePromise);
+  // 待機状態のswがあれば、強制終了
+  e.waitUntil(cachePromise).then(() => self.skipWaiting());
   console.log('[ServiceWorker] Cache Ended');
 });
 
@@ -44,11 +45,12 @@ self.addEventListener('activate', function(e) {
       key => {
         if( key !== cacheName4Res ){
           return caches.delete(key);
+        } else {
+          return Promise.resolve();
         }
       }))
     );
-  e.waitUntil(cachePromise);
-  return self.clients.claim();
+  e.waitUntil(Promise.all([cachePromise])).then(() => self.clients.claim());
 });
 
 // fetchイベント：リソースをアクセスすると、cacheにある場合、そのまま返す、存在しない場合、WEBサーバーへアクセス
@@ -72,6 +74,32 @@ self.addEventListener('fetch', function(e) {
     )
   }
   else {
+    e.respondWith(
+      fetch(requestUrl).then(
+        response => {
+          // 失敗の場合、Cache対象を優先にリターン
+          if ( !response || response.status !== 200 || response.type !== 'basic' ) {
+            return caches.match(e.request) || response
+          }
+          // cacheに追加
+          let responseClone = response.clone();
+          caches.open(cacheName4Res).then(
+            cache => cache.delete(e.request).then( // 削除
+              () => cache.put(e.request, responseClone) // 追加
+            )
+          );
+          console.log('Cached：' + requestUrl);
+          return response;
+        }
+      ).catch(
+        err => {
+          console.error(err);
+          return cache.match(e.request);
+        }
+      )
+    )
+
+    /*
     e.respondWith(caches.match(e.request).then(
       cacheResponse => {
         // 存在する場合、リターン
@@ -95,7 +123,9 @@ self.addEventListener('fetch', function(e) {
           }, OutputErrResponse('Page not found !', 404)
         );
       }).catch(err => OutputErrResponse(err, 503))
-  )}
+  )
+  */
+   }
 })
 
 // 異常対処
