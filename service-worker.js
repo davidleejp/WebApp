@@ -57,8 +57,12 @@ self.addEventListener('fetch', function(e) {
   console.log('[ServiceWorker] Fetch：' + requestUrl);
   if ( !requestUrl.match( domainNM ) ) return;
 
-  let needCache = cacheRequestUrls.some(url => requestUrl.indexOf(url) > -1);
-  if ( needCache ) {
+  // APICache対象フラグ
+  let apiCacheFlg = cacheRequestUrls.some(url => requestUrl.indexOf(url) > -1);
+  // リソースCacheフラグ
+  let resCacheFlg = cacheResources.some(url => requestUrl.indexOf(url) > -1);
+
+  if ( apiCacheFlg ) {
     caches.open(cacheName4API).then(
       cache => fetch(e.request).then(
         response => {
@@ -83,8 +87,9 @@ self.addEventListener('fetch', function(e) {
             }
             
             // cacheに追加
-            var response2Cache = response.clone();
-            caches.open(cacheName4Res).then(cache => cache.put(e.request, response2Cache));
+            if ( resCacheFlg ) {
+              caches.open(cacheName4Res).then(cache => cache.put(e.request, response.clone()));
+            }
             return response;
           }, OutputErrResponse('Page not found !', 404)
         );
