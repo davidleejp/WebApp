@@ -95,7 +95,7 @@ self.addEventListener('fetch', function(e) {
 // 異常対処
 function OutputErrResponse(errMsg, errNum) {
   console.log('Error occurred');
-  if (typeof(errMsg) == 'undefined' || err == '') {
+  if (typeof(errMsg) == 'undefined' || errMsg == '') {
     errMsg = 'Service Unavailable';
     errNum = 503;
   }
