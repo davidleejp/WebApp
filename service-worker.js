@@ -15,7 +15,7 @@ var cacheResources = [
   '/WebApp/PwaTest.html', 
   '/WebApp/PwaTest2.html', 
   '/WebApp/js/audio_api.js', 
-  // '/WebApp/image/lifecycle.gif'
+  '/WebApp/image/lifecycle.gif'
 ];
 
 // cache必要なWEBAPI　url
