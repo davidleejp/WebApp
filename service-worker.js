@@ -12,8 +12,8 @@ if ( !workbox ) {
 }
 
 // すぐアクティブ
-workbox.skipWaiting();
-workbox.clientsClaim();
+workbox.core.skipWaiting();
+workbox.core.clientsClaim();
 
 /*******************リソースのキャッシュルール設定開始**********************/
 // js / css
