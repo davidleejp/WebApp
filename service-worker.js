@@ -1,6 +1,6 @@
 // service-worker.js
 // version情報
-const swVerb = '1.2';
+const swVerb = '1.3';
 
 // workbox-sw.jsをインポート
 importScripts('https://storage.googleapis.com/workbox-cdn/releases/4.3.1/workbox-sw.js');
@@ -9,8 +9,6 @@ importScripts('https://storage.googleapis.com/workbox-cdn/releases/4.3.1/workbox
 if ( !workbox ) {
   // console.log('Workbox loaded failed');
   throw new Error('Workbox loaded failed');
-} else {
-  console.log('Workbox is loaded');
 }
 
 // すぐアクティブ
