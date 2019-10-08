@@ -6,7 +6,7 @@ importScripts('https://storage.googleapis.com/workbox-cdn/releases/4.3.1/workbox
 // インポート失敗
 if ( !workbox ) {
   console.log('Workbox loaded failed');
-  return;
+  return false;
 }
 
 // すぐアクティブ
