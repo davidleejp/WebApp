@@ -1,5 +1,51 @@
 // service-worker.js
 
+// workbox-sw.jsをインポート
+importScripts('https://storage.googleapis.com/workbox-cdn/releases/4.3.1/workbox-sw.js');
+
+// インポート失敗
+if ( !workbox ) {
+  console.log('Workbox loaded failed');
+  return;
+}
+
+// すぐアクティブ
+workbox.skipWaiting();
+workbox.clientsClaim();
+
+/*******************リソースのキャッシュルール設定開始**********************/
+// js / css
+workbox.routing.registerRoute(
+  /¥.(js|css)$/,
+  new workbox.strategies.StaleWhileRevalidate({
+    cacheName: 'cache-web-resources',
+  })
+);
+
+// WEBページ
+workbox.routing.registerRoute(
+  /¥.(html|xhtml)$/,
+  new workbox.strategies.NetworkFirst({
+    cacheName: 'cache-web-pages'
+  })
+);
+
+// イメージ
+workbox.routing.registerRoute(
+  /\.(?:png|gif|jpg|jpeg|webp|svg)$/,
+  new workbox.strategies.CacheFirst({
+    cacheName: 'cache-web-images',
+    plugins: [
+      new workbox.expiration.Plugin({
+        maxEntries: 120, // 最大ファイル数：120
+        maxAgeSeconds: 30 * 24 * 60 * 60, // 最大キャッシュ時間：30日
+      }),
+    ],
+  })
+);
+/*******************リソースのキャッシュルール設定完了**********************/
+
+/*
 // ドメイン名称
 var domainNM = 'davidleetre.github.io';
 // リソースCacheName
@@ -79,7 +125,7 @@ self.addEventListener('fetch', function(e) {
         response => {
           // 失敗の場合、Cache対象を優先にリターン
           if ( !response || response.status !== 200 || response.type !== 'basic' ) {
-            return caches.match(e.request) || response
+            return caches.open(cacheName4Res).then(cache => cache.match(e.request)) || response
           }
           // cacheに追加
           let responseClone = response.clone();
@@ -92,39 +138,13 @@ self.addEventListener('fetch', function(e) {
           return response;
         }
       ).catch(
-        err => {
-          console.error(err);
-          return caches.match(e.request);
+        async err => {
+          // console.log('Load data from cache');
+          const cache = await caches.open(cacheName4Res);
+          return await cache.match(e.request);
         }
       )
     )
-
-    /*
-    e.respondWith(caches.match(e.request).then(
-      cacheResponse => {
-        // 存在する場合、リターン
-        if (cacheResponse) {
-          return cacheResponse;
-        }
-        // cacheに追加
-        fetch(e.request).then(
-          response => {
-            // responseチェック
-            if ( !response || response.status !== 200 || response.type !== 'basic' ) {
-              return response;
-            }
-            
-            // cacheに追加
-            if ( resCacheFlg ) {
-              caches.open(cacheName4Res).then(cache => cache.put(e.request, response.clone()));
-              console.log('Cached：' + requestUrl);
-            }
-            return response;
-          }, OutputErrResponse('Page not found !', 404)
-        );
-      }).catch(err => OutputErrResponse(err, 503))
-  )
-  */
    }
 })
 
@@ -144,3 +164,4 @@ function OutputErrResponse(errMsg, errNum) {
     })
   });
 }
+*/
