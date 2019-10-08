@@ -39,7 +39,7 @@
             $.getJSON(
                 reqUrl,
                 function (jsonData) {
-                    if (jsonData || jsonData.length == 0) return;
+                    if (!jsonData || jsonData.length == 0) return;
                     let lstObj = $("#ul-worklist");
                     let html = "";
                     jsonData.forEach(detail => {
