@@ -1,0 +1,52 @@
+* {
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
+}
+
+body {
+    text-align: center;
+}
+
+div.header, div.content, div.footer {
+    margin: 0 auto;
+    width: 200px;
+    max-width: 200px;
+}
+
+div.header {
+    font-size: 14px;
+    font-weight: bold;
+    color: #0d0d0d;
+    margin-top: 40px;
+}
+
+span.required {
+    color: #ff0000;
+    font-size: 10px;
+}
+
+input.text {
+    font-size: 12px;
+    padding: 2px;
+    height: 25px;
+    width:100px;
+    max-width: 120px;
+    border:solid 1px #ddd;
+}
+button.btn {
+    width:100px;
+    max-width: 120px;
+    border:solid 1px #0d0d0d;
+    height: 25px;
+    background-color:darkseagreen;
+}
+a.info {
+    font-size:10px;
+}
+ul.list {
+    margin:0px;
+    padding: 0px;
+    line-height: 30px;
+}
+ul.list li {
+    list-style-type: none;
+}

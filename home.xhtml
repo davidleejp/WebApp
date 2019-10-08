@@ -1,35 +1,14 @@
 <html lang="ja">
 
 <head>
-    <title>トップ</title>
+    <title>作業一覧</title>
     <meta name="charset" content="UTF-8" />
     <meta name="apple-mobile-web-app-capable" content="yes" />
     <meta name="viewport"
         content="width=device-width,initial-scale=1.0,minimum-scale=1.0,maximum-scale=1.0,user-scalable=no" />
 
-    <link rel="manifest" href="./manifest.json" />
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
     <script src="./js/audio_api.js"></script>
-
-    <script language="javascript">
-        if ('serviceWorker' in navigator) {
-            /*
-            forceSWupdate () {
-            if ('serviceWorker' in navigator) {
-                navigator.serviceWorker.getRegistrations().then(function (registrations) {
-                for (let registration of registrations) {
-                    registration.update()
-                }
-                })
-            }
-            }
-            */
-            navigator.serviceWorker.register('./service-worker.js').then(function ()
-            {
-                console.log('Service Worker Registered');
-            });
-        }
-    </script>
     <style>
         table {
             font-size: 12px;
@@ -81,9 +60,9 @@
         <img src="./image/lifecycle.gif" border="0px" />
     </p>
     <p align="center">
-        <a href="./PwaTest2.html">PwaTest2</a>
+        <a href="./workdetail.xhtml">詳細</a>
         &nbsp;&nbsp;
-        <a href="./login.html">Login</a>
+        <a href="./login.xhtml">ログイン</a>
     </p>
     <script>
     function loadWorkList() {
