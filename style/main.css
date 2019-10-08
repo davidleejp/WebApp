@@ -8,8 +8,8 @@ body {
 
 div.header, div.content, div.footer {
     margin: 0 auto;
-    width: 200px;
-    max-width: 200px;
+    width: 300px;
+    max-width: 300px;
 }
 
 div.header {
