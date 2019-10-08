@@ -26,7 +26,7 @@ workbox.routing.registerRoute(
 
 // WEBページ
 workbox.routing.registerRoute(
-  /\.(html|xhtml)$/,
+  /\.(html|xhtml)(\?(\w+)=([^&]*)(&|$))?$/,
   new workbox.strategies.NetworkFirst({
     cacheName: 'cache-web-pages-v' + swVerb
   })
