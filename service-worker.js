@@ -4,11 +4,9 @@
 importScripts('https://storage.googleapis.com/workbox-cdn/releases/4.3.1/workbox-sw.js');
 
 // インポート失敗
-var isLoaded = function(){
-  if ( !workbox ) {
-    console.log('Workbox loaded failed');
-    return false;
-  }
+if ( !workbox ) {
+  // console.log('Workbox loaded failed');
+  throw new Error('Workbox loaded failed');
 }
 
 // すぐアクティブ
