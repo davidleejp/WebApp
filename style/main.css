@@ -49,4 +49,5 @@ ul.list {
 }
 ul.list li {
     list-style-type: none;
+    font-size: 12px;
 }

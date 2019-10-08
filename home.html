@@ -6,7 +6,7 @@
     <meta name="apple-mobile-web-app-capable" content="yes" />
     <meta name="viewport"
         content="width=device-width,initial-scale=1.0,minimum-scale=1.0,maximum-scale=1.0,user-scalable=no" />
-
+    <link rel="stylesheet" href="./style/main.css" />
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
 </head>
 
@@ -43,7 +43,7 @@
                     let lstObj = $("#ul-worklist");
                     let html = "";
                     jsonData.forEach(detail => {
-                        html = "<li><a href='./workdetail?id="+ detail.ID +"'>" + detail.Title + "</a></li>";
+                        html = "<li><a href='./workdetail.html?id="+ detail.ID +"'>" + detail.Title + "</a></li>";
                         lstObj.append(html);
                     });
                     $("#div_worklist").html(jsonData.length);
