@@ -8,6 +8,14 @@
         content="width=device-width,initial-scale=1.0,minimum-scale=1.0,maximum-scale=1.0,user-scalable=no" />
     <link rel="stylesheet" href="./style/main.css" />
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <script src="./js/audio_api.js"></script>
+    <style>
+        table {
+            font-size: 12px;
+            font-family: Verdana, Geneva, Tahoma, sans-serif;
+            color: #090696
+        }
+    </style>
 </head>
 
 <body>
@@ -16,13 +24,35 @@
         <div class="title">作業詳細</div>
     </div>
     <div class="content">
-        <ul>
-            <li>
-                <div class="item">
-                    <div></div>
-                </div>
-            </li>
-        </ul>
+        <table with="80%" height="60px">
+            <th>
+            <td>検証項目</td>
+            <td></td>
+            </th>
+            <tr>
+                <td>
+                    写真アップロード
+                </td>
+                <td>
+                    <input type="file" accept="image/*" />
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    録音アップロード
+                </td>
+                <td>
+                    <!-- <input type="file" accept="audio/*" capture="microphone"> -->
+                    <input type="button" id="btnRecordStart" value="録音開始" />
+                    &nbsp;
+                    <input type="button" id="btnRecordStop" value="録音終了" />
+                    <!--
+                            <audio id="player" controls></audio>
+                            <input type="hidden" id="demo_speaking_wave_file" />
+                            -->
+                </td>
+            </tr>
+        </table>
         <a href="./home.html">作業一覧</a>
     </div>
     <div class="footer"></div>

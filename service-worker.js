@@ -16,9 +16,9 @@ workbox.core.skipWaiting();
 workbox.core.clientsClaim();
 
 /*******************リソースのキャッシュルール設定開始**********************/
-// js / css
+// js / css / json
 workbox.routing.registerRoute(
-  /\.(js|css)$/,
+  /\.(js|css|json)$/,
   new workbox.strategies.StaleWhileRevalidate({
     cacheName: 'cache-web-resources-v' + swVerb,
   })

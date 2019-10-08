@@ -8,72 +8,48 @@
         content="width=device-width,initial-scale=1.0,minimum-scale=1.0,maximum-scale=1.0,user-scalable=no" />
 
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
-    <script src="./js/audio_api.js"></script>
-    <style>
-        table {
-            font-size: 12px;
-            font-family: Verdana, Geneva, Tahoma, sans-serif;
-            color: #090696
-        }
-    </style>
 </head>
 
 <body>
-    <table with="80%" height="60px">
-        <th>
-        <td>検証項目</td>
-        <td></td>
-        </th>
-        <tr>
-            <td>
-                写真アップロード
-            </td>
-            <td>
-                <input type="file" accept="image/*" />
-            </td>
-        </tr>
-        <tr>
-            <td>
-                録音アップロード
-            </td>
-            <td>
-                <!-- <input type="file" accept="audio/*" capture="microphone"> -->
-                <input type="button" id="btnRecordStart" value="録音開始" />
-                &nbsp;
-                <input type="button" id="btnRecordStop" value="録音終了" />
-                <!--
-                <audio id="player" controls></audio>
-                <input type="hidden" id="demo_speaking_wave_file" />
-                -->
-            </td>
-        </tr>
-        <tr>
-            <td>
-                <a href="javascript:void(0)" onclick="javascript:loadWorkList()">データロード</a>
-            </td>
-            <td>
-                <div id="div_worklist"></div>
-            </td>
-        </tr>
-    </table>
-    <p>
-        <img src="./image/lifecycle.gif" border="0px" />
-    </p>
+    <div class="header">
+        <div class="nav" style="display:none"><a href="javascript:void(0)">&lt;</a></div>
+        <div class="title">今日の作業一覧</div>
+    </div>
+    <div class="content">
+        <ul class="list" id="ul-worklist">
+            <!-- <li>
+                <div class="item">
+                    <div></div>
+                </div>
+            </li> -->
+        </ul>
+    </div>
+    <div class="footer"></div>
     <p align="center">
         <a href="./workdetail.html">詳細</a>
         &nbsp;&nbsp;
         <a href="./login.html">ログイン</a>
     </p>
     <script>
-    function loadWorkList() {
-        let reqUrl = "./worklist.xhtml";
-        $.getJSON(
-            reqUrl,
-            function(jsonData){
-                $("#div_worklist").html(jsonData.length);
-            }
-        )
-    }
+        $(function(){
+            loadWorkList();
+        });
+        function loadWorkList() {
+            let reqUrl = "./worklist.xhtml";
+            $.getJSON(
+                reqUrl,
+                function (jsonData) {
+                    if (jsonData || jsonData.length == 0) return;
+                    let lstObj = $("#ul-worklist");
+                    let html = "";
+                    jsonData.forEach(detail => {
+                        html = "<li><a href='./workdetail?id="+ detail.ID +"'>" + detail.Title + "</a></li>";
+                        lstObj.append(html);
+                    });
+                    $("#div_worklist").html(jsonData.length);
+                }
+            )
+        }
     </script>
 </body>
 
