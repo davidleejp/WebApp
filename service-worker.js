@@ -18,7 +18,7 @@ workbox.core.clientsClaim();
 /*******************リソースのキャッシュルール設定開始**********************/
 // js / css
 workbox.routing.registerRoute(
-  /¥.(js|css)$/,
+  /\.(js|css)$/,
   new workbox.strategies.StaleWhileRevalidate({
     cacheName: 'cache-web-resources',
   })
@@ -26,7 +26,7 @@ workbox.routing.registerRoute(
 
 // WEBページ
 workbox.routing.registerRoute(
-  /¥.(html|xhtml)$/,
+  /\.(html|xhtml)$/,
   new workbox.strategies.NetworkFirst({
     cacheName: 'cache-web-pages'
   })
