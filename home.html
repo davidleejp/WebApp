@@ -42,7 +42,7 @@
                     let lstObj = $("#ul-worklist");
                     let html = "";
                     jsonData.forEach(detail => {
-                        html = "<li><a href='./workdetail.html?id="+ detail.ID +"'>" + detail.Title + "</a></li>";
+                        html = "<li><div class='title'><a href='./workdetail.html?id="+ detail.ID +"'>" + detail.Title + "</a></div><div class='worktime'>" + detail.StartTime + "~" + detail.EndTime + "</div></li>";
                         lstObj.append(html);
                     });
                     $("#div_worklist").html(jsonData.length);
