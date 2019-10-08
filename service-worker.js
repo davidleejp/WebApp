@@ -7,6 +7,8 @@ importScripts('https://storage.googleapis.com/workbox-cdn/releases/4.3.1/workbox
 if ( !workbox ) {
   // console.log('Workbox loaded failed');
   throw new Error('Workbox loaded failed');
+} else {
+  console.log('Workbox is loaded');
 }
 
 // すぐアクティブ

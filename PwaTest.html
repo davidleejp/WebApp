@@ -14,12 +14,15 @@
     <script language="javascript">
         if ('serviceWorker' in navigator) {
             /*
-            navigator.serviceWorker
-                .getRegistrations()
-                .then(function(registrations) { 
-                    for(let registration of registrations) { 
-                        registration.unregister();
-                    } })
+            forceSWupdate () {
+            if ('serviceWorker' in navigator) {
+                navigator.serviceWorker.getRegistrations().then(function (registrations) {
+                for (let registration of registrations) {
+                    registration.update()
+                }
+                })
+            }
+            }
             */
             navigator.serviceWorker.register('./service-worker.js').then(function ()
             {
