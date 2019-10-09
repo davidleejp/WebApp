@@ -1,6 +1,6 @@
 // service-worker.js
 // version情報
-const swVerb = '5.1';
+const swVerb = '5.2';
 
 // workbox-sw.jsをインポート
 importScripts('https://storage.googleapis.com/workbox-cdn/releases/4.3.1/workbox-sw.js');
@@ -80,12 +80,11 @@ self.addEventListener('message', function(e){
     let senderId = e.source ? e.source.id : 'unknow'
     clients.forEach(client => {
       if (senderId === client.id) {
-        return
-      } else {
         client.postMessage({
           client: senderId,
           message: e.data.message + ' ok'
         });
+        return;
       }
     })
   })
