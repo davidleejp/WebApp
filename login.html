@@ -25,10 +25,7 @@
 
         if ('serviceWorker' in navigator) {
             navigator.serviceWorker.register(swPath).then(() => {
-                // reg.addEventListener('message', e => {
-                //     let url = e.data.message;
-                //     setLocalStorage(keyLastRequestUrl, url);
-                // })
+                console.log('service work install');
             });
 
             navigator.serviceWorker.addEventListener('message', e => {
@@ -62,6 +59,10 @@
                 console.log('username:' + userName + ', userpwd:' + userPwd);
                 return true;
             })
+
+            $('#btnTest').click(function(){
+                navigator.serviceWorker.controller.postMessage($('#txtUserName').val());
+            })
         })
     </script>
 </head>
@@ -79,6 +80,9 @@
                 </li>
                 <li>
                     <button class="btn" id="btnLogin" type="submit">ログイン</button>
+                </li>
+                <li>
+                    <button class="btn" id="btnTest">Test</button>
                 </li>
                 <li>
                     <a href="./forgot_pwd.html" class="info">パスワードを忘れた場合</a>
