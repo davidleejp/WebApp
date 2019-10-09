@@ -1,6 +1,6 @@
 // service-worker.js
 // version情報
-const swVerb = '3.7';
+const swVerb = '3.8';
 
 // workbox-sw.jsをインポート
 importScripts('https://storage.googleapis.com/workbox-cdn/releases/4.3.1/workbox-sw.js');
