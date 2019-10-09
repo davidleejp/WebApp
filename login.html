@@ -11,7 +11,7 @@
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
     <script>
         // SW登録
-        var appVerb = '3.5';
+        var appVerb = '3.6';
         var swPath = './service-worker.js';
         const storeageName = 'sw_version';
         if ('serviceWorker' in navigator) {
@@ -23,7 +23,10 @@
                     // reg.update().then(function () {
                     //     updateLocalCache(storeageName, appVerb)
                     // });
-                    this.skipWaiting(reg).then(() => {window.location.reload()});
+                    this.skipWaiting(reg).then(() => {
+                        updateLocalCache(storeageName, appVerb);
+                        window.location.reload();
+                    });
                 } else {
                     // do nothing
                 }
