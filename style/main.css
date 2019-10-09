@@ -65,3 +65,56 @@ ul.list li {
     float: left;
     text-align: left;
 }
+
+button.buttonBig {
+    border-radius: 25px;
+    padding: 8px;
+    width: 120px;
+    height: 40px;
+    border:none;
+}
+
+button.left {
+    float: left;
+}
+
+button.right {
+    float: right;
+}
+
+button.enable {
+    border: 1px solid #0066cc;
+    background-color: #0099cc;
+    color: #ffffff;
+}
+
+button.disabled {
+    border: 1px solid #999999;
+    background-color: #cccccc;
+    color: #666666;
+}
+
+button.blue {
+    background-color: #5fced8;
+    color: #fefefe;
+}
+
+button.orange {
+    background-color: #ee9b3b;
+    color: #fefefe;
+}
+
+button.lightorange {
+    background-color: #fbe0a9;
+    color: #fefefe;
+}
+
+button.cyan {
+    background-color: #b2d8e5;
+    color: #fefefe;
+}
+
+button.red {
+    background-color: #ea412c;
+    color: #faf16e;
+}
