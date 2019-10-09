@@ -1,6 +1,6 @@
 // service-worker.js
 // version情報
-const swVerb = '5.2';
+const swVerb = '5.3';
 
 // workbox-sw.jsをインポート
 importScripts('https://storage.googleapis.com/workbox-cdn/releases/4.3.1/workbox-sw.js');
@@ -31,6 +31,9 @@ workbox.routing.registerRoute(
   new workbox.strategies.NetworkFirst({
     cacheName: 'cache-web-pages-v' + swVerb,
     networkTimeoutSeconds: 3
+  }).then(e => {
+    console.log(e);
+    return Promise.resolve();
   })
 );
 
