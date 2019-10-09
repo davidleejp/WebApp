@@ -61,7 +61,7 @@
             })
 
             $('#btnTest').click(function(){
-                navigator.serviceWorker.controller.postMessage($('#txtUserName').val());
+                navigator.serviceWorker.controller.postMessage({'message': $('#txtUserName').val()});
             })
         })
     </script>
