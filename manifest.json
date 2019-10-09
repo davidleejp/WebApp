@@ -49,5 +49,5 @@
   "start_url": "https://davidleetre.github.io/WebApp/login.html?utm_source=homescreen&utm_medium=shortcut",
   "theme_color": "#ffffff",
   "scope": "/",
-  "orientation": ["portrait-primary"]
+  "orientation": "portrait-primary"
 }
