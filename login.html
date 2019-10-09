@@ -11,15 +11,16 @@
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
     <script>
         // SW登録
-        const appVerb = '3.2';
+        var appVerb = '3.2';
+        const storeageName = 'sw_version'; 
         if ('serviceWorker' in navigator) {
-            navigator.serviceWorker.register('./service-worker.js?verb=' + appVerb).then(reg => {
+            navigator.serviceWorker.register('./service-worker.js' + appVerb).then(reg => {
                 console.log('Service Worker Registered');
-                if (!localStorage.getItem('sw_version')) {
-                    localStorage.setItem('sw_version', appVerb);
-                } else if ( localStorage.getItem('sw_version') !== appVerb) {
+                if (!localStorage.getItem(storeageName)) {
+                    localStorage.setItem(storeageName, appVerb);
+                } else if ( localStorage.getItem(storeageName) !== appVerb) {
                     reg.update().then(function () {
-                        localStorage.setItem('sw_version', appVerb)
+                        localStorage.setItem(storeageName, appVerb)
                     });
                 } else {
                     // do nothing
