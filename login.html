@@ -12,7 +12,7 @@
     <script>
         // SW登録
         var appVerb = '3.2';
-        var swPath = './service-worker.js' + appVerb;
+        var swPath = './service-worker.js';
         const storeageName = 'sw_version'; 
         if ('serviceWorker' in navigator) {
             navigator.serviceWorker.register(swPath).then(reg => {
@@ -27,6 +27,10 @@
                     // do nothing
                 }
             });
+        }
+
+        function updateLocalStorage(key, val) {
+            localStorage.setItem(storeageName, appVerb)
         }
 
         $(function () {
