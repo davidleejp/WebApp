@@ -24,7 +24,7 @@
         const keyLastRequestUrl = 'cache-web-last';
 
         if ('serviceWorker' in navigator) {
-            navigator.serviceWorker.register(swPath).then(reg => {
+            navigator.serviceWorker.register(swPath).then(() => {
                 // reg.addEventListener('message', e => {
                 //     let url = e.data.message;
                 //     setLocalStorage(keyLastRequestUrl, url);
