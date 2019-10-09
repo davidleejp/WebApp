@@ -1,53 +1,53 @@
 {
-  "name": "PWA Test",
-  "short_name": "PWA",
   "background_color": "#ff0000",
+  "description": "関電工業務支援システム",
+  "display": "standalone",
   "icons": [
     {
-      "src": "static/favicons/icon-72x72.png",
+      "src": "https://davidleetre.github.io/WebApp/static/favicons/icon-72x72.png",
       "sizes": "72x72",
       "type": "image/png"
     },
     {
-      "src": "static/favicons/icon-96x96.png",
+      "src": "https://davidleetre.github.io/WebApp/static/favicons/icon-96x96.png",
       "sizes": "96x96",
       "type": "image/png"
     },
     {
-      "src": "static/favicons/icon-128x128.png",
+      "src": "https://davidleetre.github.io/WebApp/static/favicons/icon-128x128.png",
       "sizes": "128x128",
       "type": "image/png"
     },
     {
-      "src": "static/favicons/icon-144x144.png",
+      "src": "https://davidleetre.github.io/WebApp/static/favicons/icon-144x144.png",
       "sizes": "144x144",
       "type": "image/png"
     },
     {
-      "src": "static/favicons/icon-152x152.png",
+      "src": "https://davidleetre.github.io/WebApp/static/favicons/icon-152x152.png",
       "sizes": "152x152",
       "type": "image/png"
     },
     {
-      "src": "static/favicons/icon-192x192.png",
+      "src": "https://davidleetre.github.io/WebApp/static/favicons/icon-192x192.png",
       "sizes": "192x192",
       "type": "image/png"
     },
     {
-      "src": "static/favicons/icon-384x384.png",
+      "src": "https://davidleetre.github.io/WebApp/static/favicons/icon-384x384.png",
       "sizes": "384x384",
       "type": "image/png"
     },
     {
-      "src": "static/favicons/icon-512x512.png",
+      "src": "https://davidleetre.github.io/WebApp/static/favicons/icon-512x512.png",
       "sizes": "512x512",
       "type": "image/png"
     }
   ],
-  "Scope": "/",
-  "start_url": "./login.html?utm_source=homescreen",
-  "display": "standalone",
-  "orientation": "portrait-primary",
-  "description": "関電工業務支援システム",
-  "splash_pages": null
+  "name": "工事業務支援システム",
+  "short_name": "工事業務支援",
+  "start_url": "https://davidleetre.github.io/WebApp/login.html?utm_source=homescreen&utm_medium=shortcut",
+  "theme_color": "#ffffff",
+  "scope": "/",
+  "orientation": ["portrait-primary"]
 }
