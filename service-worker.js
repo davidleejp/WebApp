@@ -49,6 +49,23 @@ workbox.routing.registerRoute(
 );
 /*******************リソースのキャッシュルール設定完了**********************/
 
+// 通信
+self.addEventListener('message', event => {
+  const replyPort = event.ports[0]
+  const message = event.data
+  if (replyPort && message && message.type === 'skip-waiting') {
+    let waitPromise = self.skipWaiting().then(
+      () => {
+        swVerb = message.verb;
+        replyPort.postMessage({error: null});
+      }
+    ).catch(
+      err => replyPort.postMessage({err})
+    )
+    event.waitUntil(waitPromise);
+  }
+})
+
 // activeイベント：古いcacheを削除する
 self.addEventListener('activate', function(e) {
   console.log('[ServiceWorker] Activated');
