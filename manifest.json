@@ -47,5 +47,7 @@
   "Scope": "/",
   "start_url": "./login.html?utm_source=homescreen",
   "display": "standalone",
+  "orientation": "portrait-primary",
+  "description": "関電工業務支援システム",
   "splash_pages": null
 }
