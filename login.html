@@ -3,9 +3,12 @@
 <head>
     <title>Login</title>
     <meta name="charset" content="UTF-8" />
+    <meta http-equiv="Expires" content="0">
+    <meta http-equiv="Pragma" content="no-cache">
+    <meta http-equiv="Cache-control" content="no-cache">
+    <meta http-equiv="Cache" content="no-cache">
     <meta name="viewport"
         content="width=device-width,initial-scale=1.0,minimum-scale=1.0,maximum-scale=1.0,user-scalable=no" />
-    <link rel="apple-touch-icon" sizes="192x192" href="https://davidleetre.github.io/WebApp/static/favicons/icon-192x192.png" />
     <meta name="mobile-web-app-capable" content="yes" />
     <meta name="apple-mobile-web-app-capable" content="yes" />
     <meta name="apple-mobile-web-app-title" content="現場支援" />
@@ -13,6 +16,7 @@
     <meta name="theme-color" content="#ffffff" />
     <link rel="stylesheet" href="./style/main.css" />
     <link rel="manifest" href="./manifest.json" />
+    <link rel="apple-touch-icon" sizes="192x192" href="https://davidleetre.github.io/WebApp/static/favicons/icon-192x192.png" />
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
     <script>
         // SW登録
@@ -20,17 +24,17 @@
         const keyLastRequestUrl = 'cache-web-last';
 
         if ('serviceWorker' in navigator) {
+            navigator.serviceWorker.addEventListener('message', e => {
+                let url = e.data.message;
+                setLocalStorage(keyLastRequestUrl, url);
+            })
+
             navigator.serviceWorker.register(swPath).then(reg => {
                 let lastRequestUrl = getLocalStorage(keyLastRequestUrl);
                 if (lastRequestUrl && lastRequestUrl !== '') {
                     location.href = lastRequestUrl;
                 }
             });
-
-            navigator.serviceWorker.addEventListener('message', e => {
-                let url = e.data.message;
-                setLocalStorage(keyLastRequestUrl, url);
-            })
         }
 
         function getLocalStorage(key) {
@@ -38,6 +42,7 @@
         }
 
         function setLocalStorage(key, val) {
+            console.log('key:' + key + '; val:' + val);
             return localStorage.setItem(key, val);
         } 
 
