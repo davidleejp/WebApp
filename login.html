@@ -25,10 +25,15 @@
 
         if ('serviceWorker' in navigator) {
             navigator.serviceWorker.register(swPath).then(reg => {
-                reg.addEventListener('message', e => {
-                    let url = e.data.message;
-                    setLocalStorage(keyLastRequestUrl, url);
-                })
+                // reg.addEventListener('message', e => {
+                //     let url = e.data.message;
+                //     setLocalStorage(keyLastRequestUrl, url);
+                // })
+            });
+
+            navigator.serviceWorker.addEventListener('message', e => {
+                let url = e.data.message;
+                setLocalStorage(keyLastRequestUrl, url);
             });
         }
 
