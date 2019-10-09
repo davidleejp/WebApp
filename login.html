@@ -11,33 +11,32 @@
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
     <script>
         // SW登録
+        const appVerb = '3.2';
         if ('serviceWorker' in navigator) {
-            navigator.serviceWorker.register('./service-worker.js').then(function () {
+            navigator.serviceWorker.register('./service-worker.js?verb=' + appVerb).then(reg => {
                 console.log('Service Worker Registered');
+                if (!localStorage.getItem('sw_version')) {
+                    localStorage.setItem('sw_version', appVerb);
+                } else if ( localStorage.getItem('sw_version') !== appVerb) {
+                    reg.update().then(function () {
+                        localStorage.setItem('sw_version', appVerb)
+                    });
+                } else {
+                    // do nothing
+                }
             });
         }
 
         $(function () {
             // login 処理
-            $("#btnLogin").click(function () {
-                let userName, userPwd = "";
-                userName = $("#txtUserName").val();
-                userPwd = $("#txtUserPwd").val();
-                console.log("username:" + userName + ", userpwd:" + userPwd);
+            $('#btnLogin').click(function () {
+                let userName, userPwd = '';
+                userName = $('#txtUserName').val();
+                userPwd = $('#txtUserPwd').val();
+                console.log('username:' + userName + ', userpwd:' + userPwd);
                 return true;
             })
         })
-
-        // SW強制更新
-        function forceSWupdate() {
-            if ('serviceWorker' in navigator) {
-                navigator.serviceWorker.getRegistrations().then(function (registrations) {
-                    for (let registration of registrations) {
-                        registration.update()
-                    }
-                })
-            }
-        }
     </script>
 </head>
 <body>
