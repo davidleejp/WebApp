@@ -54,7 +54,7 @@ div.notice {
     color: #3d3d3d;
     display: inline-block;
     white-space: nowrap;
-    animation: 10s wordsLoop linear infinite normal;
+    animation: 25s wordsLoop linear infinite normal;
 }
 @keyframes wordsLoop {
     0% {

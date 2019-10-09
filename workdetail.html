@@ -24,6 +24,19 @@
             height: 30px;
         }
     </style>
+    <script>
+        $(function(){
+            let noticeObj = $("#p-notice-list");
+            let normalStatus  = noticeObj.css("animation-play-state");
+            let pausedStatus = "paused";
+            noticeObj.mouseover(function(){
+                    $(this).css({"animation-play-state": pausedStatus})
+                }).mouseout(function(){
+                    $(this).css({"animation-play-state": normalStatus});
+                })
+        })
+    
+    </script>
 </head>
 
 <body>
@@ -35,8 +48,10 @@
     </div>
     <div class="content">
         <div id="div-notice" class="notice">
-            <p class="animate">
+            <p id="p-notice-list" class="animate">
                 <a href="javascript:void(0)">大型で猛烈な台風19号三連休に関東直撃へ暴風被害に厳重警戒を</a>
+                &nbsp;
+                <a href="javascript:alert('通知')">横浜線で人身事故 一部運転見合わせ</a>
             </p>
         </div>
         <ul class="list">
