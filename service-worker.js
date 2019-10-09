@@ -54,13 +54,14 @@ self.addEventListener('message', event => {
   const replyPort = event.ports[0]
   const message = event.data
   if (replyPort && message && message.type === 'skip-waiting') {
+    console.log(message.type);
     let waitPromise = self.skipWaiting().then(
       () => {
-        swVerb = message.verb;
         replyPort.postMessage({error: null});
+        swVerb = message.verb;
       }
     ).catch(
-      err => replyPort.postMessage({err})
+      error => replyPort.postMessage({error})
     )
     event.waitUntil(waitPromise);
   }
