@@ -12,9 +12,10 @@
     <script>
         // SW登録
         var appVerb = '3.2';
+        var swPath = './service-worker.js' + appVerb;
         const storeageName = 'sw_version'; 
         if ('serviceWorker' in navigator) {
-            navigator.serviceWorker.register('./service-worker.js' + appVerb).then(reg => {
+            navigator.serviceWorker.register(swPath).then(reg => {
                 console.log('Service Worker Registered');
                 if (!localStorage.getItem(storeageName)) {
                     localStorage.setItem(storeageName, appVerb);
