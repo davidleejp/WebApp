@@ -1,6 +1,6 @@
 // service-worker.js
 // version情報
-const swVerb = '3.3';
+const swVerb = '3.7';
 
 // workbox-sw.jsをインポート
 importScripts('https://storage.googleapis.com/workbox-cdn/releases/4.3.1/workbox-sw.js');
@@ -48,24 +48,6 @@ workbox.routing.registerRoute(
   })
 );
 /*******************リソースのキャッシュルール設定完了**********************/
-
-// 通信
-self.addEventListener('message', event => {
-  const replyPort = event.ports[0]
-  const message = event.data
-  if (replyPort && message && message.type === 'skip-waiting') {
-    console.log(message.type);
-    let waitPromise = self.skipWaiting().then(
-      () => {
-        replyPort.postMessage({error: null});
-        swVerb = message.verb;
-      }
-    ).catch(
-      error => replyPort.postMessage({error})
-    )
-    event.waitUntil(waitPromise);
-  }
-})
 
 // activeイベント：古いcacheを削除する
 self.addEventListener('activate', function(e) {
