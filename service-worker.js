@@ -1,6 +1,6 @@
 // service-worker.js
 // version情報
-const swVerb = '4.8';
+const swVerb = '4.9';
 
 // workbox-sw.jsをインポート
 importScripts('https://storage.googleapis.com/workbox-cdn/releases/4.3.1/workbox-sw.js');
@@ -70,6 +70,7 @@ self.addEventListener('activate', function(e) {
 self.addEventListener('fetch', function(e) {
 
   const requestURL = new URL(e.request.url);
+  console.log(e.request.url);
   if (!e.request.referrer.includes(requestURL.hostname)) {
     return e.respondWith(fetch(e.request));
   }
@@ -78,7 +79,6 @@ self.addEventListener('fetch', function(e) {
     let senderId = e.source ? e.source.id : 'unknow'
     clients.forEach(client => {
       if (senderId === client.id) {
-        console.log(e.request.url);
         client.postMessage({
           client: senderId,
           message: e.request.url
