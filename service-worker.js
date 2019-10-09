@@ -1,6 +1,6 @@
 // service-worker.js
 // version情報
-const swVerb = '4.2';
+const swVerb = '4.4';
 
 // workbox-sw.jsをインポート
 importScripts('https://storage.googleapis.com/workbox-cdn/releases/4.3.1/workbox-sw.js');
@@ -53,7 +53,7 @@ workbox.routing.registerRoute(
 self.addEventListener('activate', function(e) {
   console.log('[ServiceWorker] Activated');
 
-  var activatePromise = caches.keys().then(
+  let activatePromise = caches.keys().then(
     keys => Promise.all(keys.map(
       key => {
         if( key.includes('cache-web-') && !key.includes(swVerb) ){
@@ -66,12 +66,26 @@ self.addEventListener('activate', function(e) {
   e.waitUntil(activatePromise);
   return self.clients.claim();
 });
-/*
+
 self.addEventListener('fetch', function(e) {
 
   const requestURL = new URL(e.request.url);
   if (!e.request.referrer.includes(requestURL.hostname)) {
     return e.respondWith(fetch(e.request));
   }
+  
+  const promise = self.clients.matchAll().then(function(clients) {
+    let senderId = e.source ? e.source.id : 'unknow'
+    clients.forEach(client => {
+      if (senderId === client.id) {
+        return
+      } else {
+        client.postMessage({
+          client: senderId,
+          message: e.request.url
+        })
+      }
+    })
+  })
+  e.waitUntil(promise);
 })
-*/

@@ -17,21 +17,32 @@
     <script>
         // SW登録
         const swPath = './service-worker.js';
+        const keyLastRequestUrl = 'cache-web-last';
+
         if ('serviceWorker' in navigator) {
             navigator.serviceWorker.register(swPath).then(reg => {
-                console.log('Service Worker Registered');
+                let lastRequestUrl = getLocalStorage(keyLastRequestUrl);
+                if (lastRequestUrl && lastRequestUrl !== '') {
+                    location.href = lastRequestUrl;
+                }
             });
+
+            navigator.serviceWorker.addEventListener('message', e => {
+                let url = e.data.message;
+                setLocalStorage(keyLastRequestUrl, url);
+            })
         }
 
-        function updateLocalCache(key, val) {
-            localStorage.setItem(key, val);
-        }
-
-        function getLocalCache(key) {
+        function getLocalStorage(key) {
             return localStorage.getItem(key);
         }
 
+        function setLocalStorage(key, val) {
+            return localStorage.setItem(key, val);
+        } 
+
         $(function () {
+
             // login 処理
             $('#btnLogin').click(function () {
                 let userName, userPwd = '';
