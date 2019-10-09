@@ -24,16 +24,11 @@
         const keyLastRequestUrl = 'cache-web-last';
 
         if ('serviceWorker' in navigator) {
-            navigator.serviceWorker.addEventListener('message', e => {
-                let url = e.data.message;
-                setLocalStorage(keyLastRequestUrl, url);
-            })
-
             navigator.serviceWorker.register(swPath).then(reg => {
-                let lastRequestUrl = getLocalStorage(keyLastRequestUrl);
-                if (lastRequestUrl && lastRequestUrl !== '') {
-                    location.href = lastRequestUrl;
-                }
+                reg.addEventListener('message', e => {
+                    let url = e.data.message;
+                    setLocalStorage(keyLastRequestUrl, url);
+                })
             });
         }
 
@@ -47,6 +42,12 @@
         } 
 
         $(function () {
+            // 画面自動遷移
+            let lastRequestUrl = getLocalStorage(keyLastRequestUrl);
+            if (lastRequestUrl && lastRequestUrl !== '') {
+                location.href = lastRequestUrl;
+                return;
+            }
 
             // login 処理
             $('#btnLogin').click(function () {
