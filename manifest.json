@@ -1,6 +1,6 @@
 {
   "background_color": "#ff0000",
-  "description": "関電工業務支援システム",
+  "description": "現場支援システム",
   "display": "standalone",
   "icons": [
     {
@@ -44,8 +44,8 @@
       "type": "image/png"
     }
   ],
-  "name": "工事業務支援システム",
-  "short_name": "工事業務支援",
+  "name": "現場支援システム",
+  "short_name": "現場支援",
   "start_url": "https://davidleetre.github.io/WebApp/login.html?utm_source=homescreen&utm_medium=shortcut",
   "theme_color": "#ffffff",
   "scope": "/",
