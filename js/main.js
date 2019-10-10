@@ -53,11 +53,20 @@ function updateOnlineStatus() {
     console.log('onLine status:', onlineFlg);
 }
 
-// 画面起動時、該当画面のURLをLocalStorageに保存する
+// 画面ロードイベント
 window.addEventListener('load', (event) => {
+    // 最後にアクセスした画面のURLを取得
     lastRequestUrl = getLastRequestURL(keyLastRequestUrl);
+    // 当画面のURLをLocalStorageに保存する
     setLastRequestURL(location.href || '');
+    // On/OffLineの表示
+    updateOnlineStatus();
 });
+
+// 画面を閉じる直前のイベント
+window.addEventListener('beforeunload', (event) =>{
+    console.log(event);
+})
 
 // オンラインイベント
 window.addEventListener('online', updateOnlineStatus);
