@@ -16,5 +16,5 @@ function setLocalStorage(key, val) {
 
 // 本画面のURLをLocalStorageに保存する
 window.addEventListener('load', (event) => {
-    setLocalStorage(keyLastRequestUrl, localtion.href || '');
+    setLocalStorage(keyLastRequestUrl, location.href || '');
 })
