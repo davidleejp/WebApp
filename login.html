@@ -30,7 +30,7 @@
         }
 
         // 最後リクエストURLを保存
-        const updatesChannel = new BroadcastChannel('cacheUpdatedV2');
+        const updatesChannel = new BroadcastChannel('cacheUpdated');
         updatesChannel.onmessage = (event) => {
             const {cacheName, updatedURL} = event.data.payload;
             if (updatedURL && updatedURL !== '') {
