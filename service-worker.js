@@ -1,6 +1,6 @@
 // service-worker.js
 // version情報
-const swVerb = '5.6';
+const swVerb = '5.7';
 
 // workbox-sw.jsをインポート
 importScripts('https://storage.googleapis.com/workbox-cdn/releases/4.3.1/workbox-sw.js');
@@ -52,8 +52,6 @@ workbox.routing.registerRoute(
   })
 );
 /*******************リソースのキャッシュルール設定完了**********************/
-
-
 
 /*******************異常処理開始********************************************/
 workbox.routing.setCatchHandler(({event}) => {

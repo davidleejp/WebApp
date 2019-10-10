@@ -30,12 +30,12 @@
         }
 
         const updatesChannel = new BroadcastChannel('cacheUpdated');
-        updatesChannel.addEventListener('message', event => {
+        updatesChannel.onmessage = (event) => {
             const {cacheName, updatedUrl} = event.data.payload;
             if (updatedUrl && updatedUrl !== '') {
                 setLocalStorage(keyLastRequestUrl, updatedUrl);
             }
-        });
+        };
 
         function getLocalStorage(key) {
             return localStorage.getItem(key);
