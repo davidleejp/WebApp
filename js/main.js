@@ -3,10 +3,15 @@ const keyLastRequestUrl = 'cache-web-last';
 
 var lastRequestUrl = '';
 function getLastRequestURL(){
-    if (lastRequestUrl && lastRequestUrl !== '') {
-        return lastRequestUrl;
+    try {
+        if (lastRequestUrl && lastRequestUrl !== '') {
+            return lastRequestUrl;
+        }
+        return getLocalStorage(keyLastRequestUrl);
+    } catch(err) {
+        console.log(err);
+        return undefined;
     }
-    return getLocalStorage(keyLastRequestUrl);
 }
 
 function getLocalStorage(key) {
