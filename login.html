@@ -18,7 +18,7 @@
     <link rel="manifest" href="./manifest.json" />
     <link rel="apple-touch-icon" sizes="192x192" href="https://davidleetre.github.io/WebApp/static/favicons/icon-192x192.png" />
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
-    <script src="./js/channelMsgLastRequest_api.js"></script>
+    <script src="./js/main.js"></script>
     <script>
         // SW登録
         const swPath = './service-worker.js';
@@ -28,7 +28,7 @@
                 console.log('service work install');
             });
         }
-        
+
         $(function () {
             // 画面自動遷移
             // let lastRequestUrl = getLocalStorage(keyLastRequestUrl);
