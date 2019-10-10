@@ -1,6 +1,6 @@
 // service-worker.js
 // version情報
-const swVerb = '2.3';
+const swVerb = '2.4';
 
 // workbox-sw.jsをインポート
 importScripts('https://storage.googleapis.com/workbox-cdn/releases/4.3.1/workbox-sw.js');
@@ -17,7 +17,7 @@ workbox.core.clientsClaim();
 /*******************リソースのキャッシュルール設定開始**********************/
 // js / css / json
 workbox.routing.registerRoute(
-  /\.(js|css|json)$/,
+  /\.(js|css|json)(\?\w+=[\w|\.]+)?$/,
   new workbox.strategies.StaleWhileRevalidate({
     cacheName: 'cache-web-resources-v' + swVerb,
   })
