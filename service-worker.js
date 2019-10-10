@@ -1,6 +1,6 @@
 // service-worker.js
 // version情報
-const swVerb = '5.5';
+const swVerb = '5.6';
 
 // workbox-sw.jsをインポート
 importScripts('https://storage.googleapis.com/workbox-cdn/releases/4.3.1/workbox-sw.js');
@@ -32,7 +32,7 @@ workbox.routing.registerRoute(
     networkTimeoutSeconds: 3, 
     plugins: [
       new workbox.broadcastUpdate.Plugin({
-        channalName: 'cacheUpdated'
+        channelName: 'cacheUpdated'
       })
     ]
   })
