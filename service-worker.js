@@ -1,6 +1,6 @@
 // service-worker.js
 // version情報
-const swVerb = '5.3';
+const swVerb = '5.4';
 
 // workbox-sw.jsをインポート
 importScripts('https://storage.googleapis.com/workbox-cdn/releases/4.3.1/workbox-sw.js');
@@ -14,6 +14,14 @@ if ( !workbox ) {
 // すぐアクティブ
 workbox.core.skipWaiting();
 workbox.core.clientsClaim();
+workbox.navigationPreLoad.enable();
+
+/*******************事前キャッシュル設定開始********************************/
+const OFFLINE_PAGE = './offline.html';
+workbox.precaching.precacheAndRoute([
+  OFFLINE_PAGE
+])
+/*******************事前キャッシュル設定完了********************************/
 
 /*******************リソースのキャッシュルール設定開始**********************/
 // js / css / json
@@ -30,10 +38,12 @@ workbox.routing.registerRoute(
   /\.(html|xhtml)(\?)?[\w+=\w{0,}&?]{0,}$/,
   new workbox.strategies.NetworkFirst({
     cacheName: 'cache-web-pages-v' + swVerb,
-    networkTimeoutSeconds: 3
-  }).then(e => {
-    console.log(e);
-    return Promise.resolve();
+    networkTimeoutSeconds: 3, 
+    plugins: [
+      new workbox.broadcastUpdate.Plugin({
+        channalName: 'cacheUpdated'
+      })
+    ]
   })
 );
 
@@ -51,6 +61,28 @@ workbox.routing.registerRoute(
   })
 );
 /*******************リソースのキャッシュルール設定完了**********************/
+
+
+
+/*******************異常処理開始********************************************/
+workbox.routing.setCatchHandler(({event}) => {
+  switch (event.request.destination) {
+    case 'document':
+      return caches.match(OFFLINE_PAGE);
+    break;
+    // case 'image':
+    //   return caches.match(FALLBACK_IMAGE_URL);
+    // break;
+
+    // case 'font':
+    //   return caches.match(FALLBACK_FONT_URL);
+    // break;
+    default:
+      // If we don't have a fallback, just return an error response.
+      return Response.error();
+  }
+});
+/*******************異常処理完了********************************************/
 
 // activeイベント：古いcacheを削除する
 self.addEventListener('activate', function(e) {
@@ -76,20 +108,4 @@ self.addEventListener('fetch', function(e) {
   if (!e.request.referrer.includes(requestURL.hostname)) {
     return e.respondWith(fetch(e.request));
   }
-})
-
-self.addEventListener('message', function(e){
-  const promise = self.clients.matchAll().then(function(clients) {
-    let senderId = e.source ? e.source.id : 'unknow'
-    clients.forEach(client => {
-      if (senderId === client.id) {
-        client.postMessage({
-          client: senderId,
-          message: e.data.message + ' ok'
-        });
-        return;
-      }
-    })
-  })
-  e.waitUntil(promise);
 })

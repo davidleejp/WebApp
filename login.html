@@ -27,12 +27,15 @@
             navigator.serviceWorker.register(swPath).then(() => {
                 console.log('service work install');
             });
-
-            navigator.serviceWorker.addEventListener('message', e => {
-                let url = e.data.message;
-                setLocalStorage(keyLastRequestUrl, url);
-            });
         }
+
+        const updatesChannel = new BroadcastChannel('cacheUpdated');
+        updatesChannel.addEventListener('message', event => {
+            const {cacheName, updatedUrl} = event.data.payload;
+            if (updatedUrl && updatedUrl !== '') {
+                setLocalStorage(keyLastRequestUrl, updatedUrl);
+            }
+        });
 
         function getLocalStorage(key) {
             return localStorage.getItem(key);
@@ -59,10 +62,6 @@
                 console.log('username:' + userName + ', userpwd:' + userPwd);
                 return true;
             })
-
-            $('#btnTest').click(function(){
-                navigator.serviceWorker.controller.postMessage({'message': $('#txtUserName').val()});
-            })
         })
     </script>
 </head>
@@ -87,7 +86,6 @@
             </ul>
 
         </form>
-        <button class="btn" id="btnTest" type="button">Test</button>
     </div>
     <div class="footer"></div>
 </body>
