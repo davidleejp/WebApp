@@ -1,6 +1,6 @@
 // service-worker.js
 // version情報
-const swVerb = '2.4';
+const swVerb = '2.5';
 
 // workbox-sw.jsをインポート
 importScripts('https://storage.googleapis.com/workbox-cdn/releases/4.3.1/workbox-sw.js');
@@ -75,8 +75,9 @@ workbox.routing.setCatchHandler(({event}) => {
 
 /*******************事前キャッシュル設定開始********************************/
 const precacheName ='cache-web-pre-v' + swVerb;
+const OFFLINE_PAGE = './offline.html';
 const precacheUrls = [
-  './offline.html'
+  OFFLINE_PAGE
 ];
 // installイベント：必要なリソースをcacheに投入する
 self.addEventListener('install', function(e) {
