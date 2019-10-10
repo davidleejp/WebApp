@@ -14,7 +14,7 @@ if ( !workbox ) {
 // すぐアクティブ
 workbox.core.skipWaiting();
 workbox.core.clientsClaim();
-workbox.navigationPreLoad.enable();
+workbox.navigationPreLoad();
 
 /*******************事前キャッシュル設定開始********************************/
 const OFFLINE_PAGE = './offline.html';
