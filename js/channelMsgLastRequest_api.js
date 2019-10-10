@@ -25,3 +25,7 @@ window.addEventListener('load', (event) => {
         }
     };
 })
+
+window.addEventListener('beforeunload', (event) => {
+    alert(location.href);
+})
