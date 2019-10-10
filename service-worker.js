@@ -1,27 +1,18 @@
 // service-worker.js
 // version情報
-const swVerb = '5.4';
+const swVerb = '5.5';
 
 // workbox-sw.jsをインポート
 importScripts('https://storage.googleapis.com/workbox-cdn/releases/4.3.1/workbox-sw.js');
 
 // インポート失敗
 if ( !workbox ) {
-  // console.log('Workbox loaded failed');
   throw new Error('Workbox loaded failed');
 }
 
 // すぐアクティブ
 workbox.core.skipWaiting();
 workbox.core.clientsClaim();
-workbox.navigationPreLoad();
-
-/*******************事前キャッシュル設定開始********************************/
-const OFFLINE_PAGE = './offline.html';
-workbox.precaching.precacheAndRoute([
-  OFFLINE_PAGE
-])
-/*******************事前キャッシュル設定完了********************************/
 
 /*******************リソースのキャッシュルール設定開始**********************/
 // js / css / json
@@ -83,6 +74,22 @@ workbox.routing.setCatchHandler(({event}) => {
   }
 });
 /*******************異常処理完了********************************************/
+
+
+/*******************事前キャッシュル設定開始********************************/
+const precacheName ='cache-web-pre-v' + swVerb;
+const precacheUrls = [
+  './offline.html'
+];
+// installイベント：必要なリソースをcacheに投入する
+self.addEventListener('install', function(e) {
+  let cachePromise = caches.open(precacheName).then(
+    cache => cache.addAll(precacheUrls)
+  );
+  // 待機状態のswがあれば、強制終了
+  e.waitUntil(cachePromise);
+});
+/*******************事前キャッシュル設定完了********************************/
 
 // activeイベント：古いcacheを削除する
 self.addEventListener('activate', function(e) {
