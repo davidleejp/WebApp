@@ -1,6 +1,6 @@
 // service-worker.js
 // version情報
-const swVerb = '1.3';
+const swVerb = '1.4';
 
 // workbox-sw.jsをインポート
 importScripts('https://storage.googleapis.com/workbox-cdn/releases/4.3.1/workbox-sw.js');
@@ -27,7 +27,7 @@ workbox.routing.registerRoute(
 // WEBページ
 workbox.routing.registerRoute(
   /\.(html|xhtml)(\?)?[\w+=\w{0,}&?]{0,}$/,
-  new workbox.strategies.NetworkOnly({
+  new workbox.strategies.NetworkFirst({
     cacheName: 'cache-web-pages-v' + swVerb,
     networkTimeoutSeconds: 3, 
     plugins: [

@@ -18,35 +18,17 @@
     <link rel="manifest" href="./manifest.json" />
     <link rel="apple-touch-icon" sizes="192x192" href="https://davidleetre.github.io/WebApp/static/favicons/icon-192x192.png" />
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <script src="./js/channelMsgLastRequest_api.js"></script>
     <script>
         // SW登録
         const swPath = './service-worker.js';
-        const keyLastRequestUrl = 'cache-web-last';
 
         if ('serviceWorker' in navigator) {
             navigator.serviceWorker.register(swPath).then(() => {
                 console.log('service work install');
             });
         }
-
-        // 最後リクエストURLを保存
-        const updatesChannel = new BroadcastChannel('cacheUpdated');
-        updatesChannel.onmessage = (event) => {
-            const {cacheName, updatedURL} = event.data.payload;
-            if (updatedURL && updatedURL !== '') {
-                setLocalStorage(keyLastRequestUrl, updatedURL);
-            }
-        };
-
-        function getLocalStorage(key) {
-            return localStorage.getItem(key);
-        }
-
-        function setLocalStorage(key, val) {
-            console.log('key:' + key + '; val:' + val);
-            return localStorage.setItem(key, val);
-        } 
-
+        
         $(function () {
             // 画面自動遷移
             // let lastRequestUrl = getLocalStorage(keyLastRequestUrl);
