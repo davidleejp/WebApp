@@ -32,7 +32,7 @@
         $(function () {
             // 画面自動遷移
             let lastRequestUrl = getLastRequestURL();
-            if (lastRequestUrl && lastRequestUrl !== '' && lastRequestUrl.indexOf('login.html') < 0 ) {
+            if (lastRequestUrl && lastRequestUrl !== '' &&  lastRequestUrl.toLowerCase().indexOf('login.html') < 0 ) {
                 location.href = lastRequestUrl;
                 return;
             }
