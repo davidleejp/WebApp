@@ -27,13 +27,14 @@
         <p align="center">
             <a href="./workdetail.html">詳細</a>
             &nbsp;&nbsp;
-            <a href="./login.html">ログイン</a>
+            <a href="javascript:void(0)" onclick="javascript:signOut()">sign out</a>
         </p>
     </div>
     <script>
         $(function(){
             loadWorkList();
         });
+
         function loadWorkList() {
             let reqUrl = "./worklist.xhtml";
             $.getJSON(
@@ -49,6 +50,12 @@
                     $("#div_worklist").html(jsonData.length);
                 }
             )
+        }
+
+        function signOut() {
+            const url = './login.html';
+            setLastRequestURL(url);
+            location.href = url;
         }
     </script>
 </body>

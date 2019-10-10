@@ -2,7 +2,7 @@
 const keyLastRequestUrl = 'cache-web-last';
 
 var lastRequestUrl = '';
-function getLastRequestURL(){
+function getLastRequestURL() {
     try {
         if (lastRequestUrl && lastRequestUrl !== '') {
             return lastRequestUrl;
@@ -12,6 +12,10 @@ function getLastRequestURL(){
         console.log(err);
         return undefined;
     }
+}
+
+function setLastRequestURL(url) {
+    setLocalStorage(keyLastRequestUrl, url)
 }
 
 function getLocalStorage(key) {
@@ -41,5 +45,5 @@ function setLocalStorage(key, val, expire) {
 // 本画面のURLをLocalStorageに保存する
 window.addEventListener('load', (event) => {
     lastRequestUrl = getLastRequestURL(keyLastRequestUrl);
-    setLocalStorage(keyLastRequestUrl, location.href || '');
+    setLastRequestURL(location.href || '');
 })
