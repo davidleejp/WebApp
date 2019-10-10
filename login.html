@@ -29,11 +29,12 @@
             });
         }
 
+        // 最後リクエストURLを保存
         const updatesChannel = new BroadcastChannel('cacheUpdated');
         updatesChannel.onmessage = (event) => {
-            const {cacheName, updatedUrl} = event.data.payload;
-            if (updatedUrl && updatedUrl !== '') {
-                setLocalStorage(keyLastRequestUrl, updatedUrl);
+            const {cacheName, updatedURL} = event.data.payload;
+            if (updatedURL && updatedURL !== '') {
+                setLocalStorage(keyLastRequestUrl, updatedURL);
             }
         };
 
