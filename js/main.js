@@ -65,7 +65,6 @@ window.addEventListener('load', (event) => {
 
 // 画面を閉じる直前のイベント
 window.addEventListener('beforeunload', (event) =>{
-    console.log(event);
     if (navigator.onLine === false) {
         return confirm('ページを離れようとしています。よろしいですか？');
     }
