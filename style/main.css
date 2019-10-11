@@ -8,15 +8,20 @@ body {
 
 div.header, div.content, div.footer {
     margin: 0 auto;
-    width: 300px;
-    max-width: 300px;
+    width: 720px;
+    max-width: 720px;
+    padding: 0px;
 }
 
 div.header {
+    height: 40px;
+    margin: 20px auto;
+    background-color: #fefefe;
+    border: solid 1px #cccccc;
+    color: #0d0d0d;
     font-size: 14px;
     font-weight: bold;
-    color: #0d0d0d;
-    margin-top: 40px;
+    line-height: 40px;
 }
 
 span.nav {
@@ -101,6 +106,7 @@ button.btn {
 a.info {
     font-size:10px;
 }
+
 ul.list {
     margin:0 auto;
     padding: 0px;
@@ -108,6 +114,7 @@ ul.list {
     width: 100%;
     float: left;
 }
+
 ul.list li {
     list-style-type: none;
     font-size: 12px;
@@ -117,7 +124,7 @@ ul.list li {
     margin: 0px auto;
 }
 
-button.buttonBig {
+button.buttonBig, a.buttonBig {
     border-radius: 6px;
     padding: 2px;
     width: 120px;
@@ -125,49 +132,56 @@ button.buttonBig {
     border:none;
     margin: 4px auto;
     font-size: 12px;
+    position: relative;
+    display: inline-block;
+    overflow: hidden;
+    text-decoration: none;
+    text-indent: 0;
+    line-height: 40px;
+
 }
 
-button.left {
+.left {
     float: left;
 }
 
-button.right {
+.right {
     float: right;
 }
 
-button.enable {
+.enable {
     border: 1px solid #0066cc;
     background-color: #0099cc;
     color: #ffffff;
 }
 
-button.disabled {
+.disabled {
     border: 1px solid #999999;
     background-color: #cccccc;
     color: #666666;
 }
 
-button.blue {
+.blue {
     background-color: #5fced8;
     color: #fefefe;
 }
 
-button.orange {
+.orange {
     background-color: #ee9b3b;
     color: #fefefe;
 }
 
-button.lightorange {
+.lightorange {
     background-color: #fbe0a9;
     color: #fefefe;
 }
 
-button.cyan {
+.cyan {
     background-color: #b2d8e5;
     color: #fefefe;
 }
 
-button.red {
+.red {
     background-color: #ea412c;
     color: #faf16e;
 }

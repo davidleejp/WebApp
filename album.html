@@ -1,0 +1,159 @@
+<html lang="ja">
+
+<head>
+    <title>工事アルバム</title>
+    <meta name="charset" content="UTF-8" />
+    <meta http-equiv="Expires" content="0">
+    <meta http-equiv="Pragma" content="no-cache">
+    <meta http-equiv="Cache-control" content="no-cache">
+    <meta http-equiv="Cache" content="no-cache">
+    <meta name="apple-mobile-web-app-capable" content="yes" />
+    <meta name="viewport"
+        content="width=device-width,initial-scale=1.0,minimum-scale=1.0,maximum-scale=1.0,user-scalable=no" />
+    <link rel="stylesheet" href="./style/main.css" />
+    <script src="./js/main.js?ver=2.8"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <style>
+        #ul-menu {
+            margin-bottom: 8px;
+        }
+
+        #ul-menu li {
+            width: 33%;
+            text-align: center;
+            margin: 0 auto;
+        }
+
+        #ul-album li {
+            float: left;
+            width: 49%;
+            height: 150px;
+            margin: 2px 2px;
+            text-align: center;
+            border: solid 1px #cccccc;
+        }
+
+        div.inline {
+            display: inline;
+        }
+
+        div.div-photo {
+            width: 60%;
+            height: 100%;
+            float: left;
+            margin: 0 -1px;
+            border-right: solid 1px #cccccc;
+            padding: 1px;
+        }
+
+        div.div-photo img {
+            text-align: center;
+        }
+
+        div.div-comment {
+            width: 39%;
+            margin-left: 2px;
+            float: right;
+        }
+        
+        div.div-comment div {
+            float: left;
+            width: 100%;
+            font-size: 11px;
+            text-align: left;
+        }
+
+        div.div-comment-updated {
+            height: 30px;
+            line-height: 30px;
+        }
+        div.div-comment-content {
+            height:120px;
+            line-height: 150%;
+            border-top: solid 1px #cccccc;
+        }
+
+        input.input-file-hidden {
+            position: absolute;
+            font-size: 100px;
+            right: 0;
+            top: 0;
+            height: 100%;
+            width: 100%;
+            opacity: 0;
+            filter: alpha(opacity=0);
+            cursor: pointer;
+        }
+        
+    </style>
+</head>
+
+<body>
+    <div class="header">
+        <div class="title">
+            <span class="nav"><a href="javascript:void(0)" onclick="javascript:history.back()">&lt;</a></span>
+            工事アルバム
+        </div>
+    </div>
+    <div class="content">
+        <ul class="list" id="ul-menu">
+            <li>
+                <!-- <button class="buttonBig orange">写真撮影</button> -->
+                <a class="buttonBig orange">
+                    写真撮影
+                    <input name="fileCamera" id="fileCamera"  class="input-file-hidden" type="file" accept="image/*" capture="user" />
+                </a>
+            
+        </li>
+            <li><button class="buttonBig orange">ファイル選択</button></li>
+            <li><button class="buttonBig blue">添付</button></li>
+        </ul>
+        <ul class="list" id="ul-album">
+            <li>
+                <div class="div-photo inline">
+                    <img height="148px" src="https://cdn-ak.f.st-hatena.com/images/fotolife/e/ejiejikun/20180904/20180904213044.jpg" />
+                </div>
+                <div class="div-comment inline">
+                    <div class="div-comment-updated">
+                        10月11日(金) 14:34
+                    </div>
+                    <div class="div-comment-content">
+                        建物周りの階段も出来上がっていました
+                    </div>
+                </div>
+            </li>
+            <li>
+                    <div class="div-photo inline">
+                        <img height="148px" src="https://cdn-ak.f.st-hatena.com/images/fotolife/e/ejiejikun/20180904/20180904212504.jpg" />
+                    </div>
+                    <div class="div-comment inline">
+                        <div class="div-comment-updated">
+                            10月11日(金) 14:34
+                        </div>
+                        <div class="div-comment-content">
+                            地業工事（砂利、砂及び捨てコンクリート地業等　準備段階）作業完了
+                        </div>
+                    </div>
+                </li>
+                <li>
+                        <div class="div-photo inline">
+                            <img height="148px" src="https://cdn-ak.f.st-hatena.com/images/fotolife/e/ejiejikun/20180904/20180904212504.jpg" />
+                        </div>
+                        <div class="div-comment inline">
+                            <div class="div-comment-updated">
+                                10月11日(金) 14:34
+                            </div>
+                            <div class="div-comment-content">
+                                地業工事（砂利、砂及び捨てコンクリート地業等　準備段階）作業完了
+                            </div>
+                        </div>
+                    </li>
+        </ul>
+        <a href="./home.html">作業一覧</a>
+        &nbsp;
+        <a href="line://nv/chat">Line起動</a>
+    </div>
+    <div class="footer"></div>
+</body>
+
+</html>

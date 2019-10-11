@@ -34,7 +34,9 @@
                     $(this).css({"animation-play-state": pausedStatus})
                 }).mouseout(function(){
                     $(this).css({"animation-play-state": normalStatus});
-                })
+                });
+            
+            $('#btnWorkAlbum').click(() => location.href = './album.html');
         })
     
     </script>
@@ -68,7 +70,7 @@
             </li>
             <li>
                 <button class="buttonBig left blue">TBM-RKY</button>
-                <button class="buttonBig right orange">作業アルバム</button>
+                <button class="buttonBig right orange" id="btnWorkAlbum">作業アルバム</button>
             </li>
             <li>
                 <button class="buttonBig left blue">安全確認書</button>
