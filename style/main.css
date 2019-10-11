@@ -132,13 +132,22 @@ button.buttonBig, a.buttonBig {
     border:none;
     margin: 4px auto;
     font-size: 12px;
+}
+
+a.file {
+    padding: 0px;
     position: relative;
     display: inline-block;
     overflow: hidden;
     text-decoration: none;
     text-indent: 0;
     line-height: 40px;
+}
 
+a.file:hover {
+    background-color: #ee9b3b;
+    color: #fefefe;
+    text-decoration: none;
 }
 
 .left {

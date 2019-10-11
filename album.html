@@ -55,7 +55,7 @@
             margin-left: 2px;
             float: right;
         }
-        
+
         div.div-comment div {
             float: left;
             width: 100%;
@@ -67,8 +67,9 @@
             height: 30px;
             line-height: 30px;
         }
+
         div.div-comment-content {
-            height:120px;
+            height: 120px;
             line-height: 150%;
             border-top: solid 1px #cccccc;
         }
@@ -84,8 +85,17 @@
             filter: alpha(opacity=0);
             cursor: pointer;
         }
-        
     </style>
+    <script>
+
+        $(function () {
+            $('#fileCamera').on('change', () => {
+                var files = this.files;
+                console.log(files);
+            })
+        })
+
+    </script>
 </head>
 
 <body>
@@ -98,20 +108,21 @@
     <div class="content">
         <ul class="list" id="ul-menu">
             <li>
-                <!-- <button class="buttonBig orange">写真撮影</button> -->
-                <a class="buttonBig orange">
+                <a class="buttonBig file orange" id="btnCamera" name="btnCamera">
                     写真撮影
-                    <input name="fileCamera" id="fileCamera"  class="input-file-hidden" type="file" accept="image/*" capture="user" />
+                    <input name="fileCamera" id="fileCamera" class="input-file-hidden" type="file" accept="image/*"
+                        capture="user" />
                 </a>
-            
-        </li>
+
+            </li>
             <li><button class="buttonBig orange">ファイル選択</button></li>
             <li><button class="buttonBig blue">添付</button></li>
         </ul>
         <ul class="list" id="ul-album">
             <li>
                 <div class="div-photo inline">
-                    <img height="148px" src="https://cdn-ak.f.st-hatena.com/images/fotolife/e/ejiejikun/20180904/20180904213044.jpg" />
+                    <img height="148px"
+                        src="https://cdn-ak.f.st-hatena.com/images/fotolife/e/ejiejikun/20180904/20180904213044.jpg" />
                 </div>
                 <div class="div-comment inline">
                     <div class="div-comment-updated">
@@ -123,31 +134,33 @@
                 </div>
             </li>
             <li>
-                    <div class="div-photo inline">
-                        <img height="148px" src="https://cdn-ak.f.st-hatena.com/images/fotolife/e/ejiejikun/20180904/20180904212504.jpg" />
+                <div class="div-photo inline">
+                    <img height="148px"
+                        src="https://cdn-ak.f.st-hatena.com/images/fotolife/e/ejiejikun/20180904/20180904212504.jpg" />
+                </div>
+                <div class="div-comment inline">
+                    <div class="div-comment-updated">
+                        10月11日(金) 14:34
                     </div>
-                    <div class="div-comment inline">
-                        <div class="div-comment-updated">
-                            10月11日(金) 14:34
-                        </div>
-                        <div class="div-comment-content">
-                            地業工事（砂利、砂及び捨てコンクリート地業等　準備段階）作業完了
-                        </div>
+                    <div class="div-comment-content">
+                        地業工事（砂利、砂及び捨てコンクリート地業等　準備段階）作業完了
                     </div>
-                </li>
-                <li>
-                        <div class="div-photo inline">
-                            <img height="148px" src="https://cdn-ak.f.st-hatena.com/images/fotolife/e/ejiejikun/20180904/20180904212504.jpg" />
-                        </div>
-                        <div class="div-comment inline">
-                            <div class="div-comment-updated">
-                                10月11日(金) 14:34
-                            </div>
-                            <div class="div-comment-content">
-                                地業工事（砂利、砂及び捨てコンクリート地業等　準備段階）作業完了
-                            </div>
-                        </div>
-                    </li>
+                </div>
+            </li>
+            <li>
+                <div class="div-photo inline">
+                    <img height="148px"
+                        src="https://cdn-ak.f.st-hatena.com/images/fotolife/e/ejiejikun/20180904/20180904212504.jpg" />
+                </div>
+                <div class="div-comment inline">
+                    <div class="div-comment-updated">
+                        10月11日(金) 14:34
+                    </div>
+                    <div class="div-comment-content">
+                        地業工事（砂利、砂及び捨てコンクリート地業等　準備段階）作業完了
+                    </div>
+                </div>
+            </li>
         </ul>
         <a href="./home.html">作業一覧</a>
         &nbsp;
