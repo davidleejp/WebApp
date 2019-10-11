@@ -11,8 +11,9 @@
     <meta name="viewport"
         content="width=device-width,initial-scale=1.0,minimum-scale=1.0,maximum-scale=1.0,user-scalable=no" />
     <link rel="stylesheet" href="./style/main.css" />
-    <script src="./js/main.js?ver=2.8"></script>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <script src="./js/main.js?ver=3.0"></script>
+    <script src="./js/photo_api.js?ver=3.0"></script>
     <style>
         #ul-menu,
         #ul-album {
@@ -28,7 +29,7 @@
         #ul-album li {
             float: left;
             width: 49%;
-            height: 150px;
+            height: 152px;
             margin: 2px 2px;
             text-align: center;
             border: solid 1px #cccccc;
@@ -45,10 +46,14 @@
             margin: 0 -1px;
             border-right: solid 1px #cccccc;
             padding: 1px;
+            position: relative;
         }
 
         div.div-photo img {
-            text-align: center;
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
         }
 
         div.div-comment {
@@ -88,34 +93,74 @@
         }
     </style>
     <script>
+        const userId = '001';
+        const workId = '0000-0000-0000';
+        const key = 'userId$' + userId + '-workId$' + workId;
 
         $(function () {
+            // 一時保存の写真情報を表示する
+            loadCacheImages();
+
+            // 写真撮影で表示
             $('#fileCamera').change((event) => {
                 const files = $('#fileCamera').prop('files');
                 if (!files || files.length === 0) return;
 
                 let file = files[0];
-                let imgJSON = {
-                    'src': window.URL.createObjectURL(file),
-                    'width': '100px',
-                    'height': '100px'
-                }
-                appendToAlbum(imgJSON);
-                // $('#imgTest').attr('src', window.URL.createObjectURL(file));
-            })
+                imgResize(file, fileResize => {
+                    if (!fileResize) return;
+
+                    let maxSize = { width: 210, height: 150 };
+                    let normalSize = getSize();
+                    let resize = getResize(normalSize, maxSize);
+                    let fileReader = new FileReader();
+                    fileReader.onload = function () {
+                        let blob = this.result;
+                        if (!blob) return;
+
+                        // data
+                        let data = {
+                            workId: workId,
+                            userId: userId,
+                            image: {
+                                data: blob,
+                                size: resize
+                            }
+                        }
+                        let expire = new Date();
+                        expire = expire.setDate(expire.getDate() + 7); // 1週間後無効にする
+                        setLocalStorage(key, data, expire);
+
+                        let imgJSON = {
+                            'src': blob,
+                            'size': resize
+                        }
+                        appendToAlbum(imgJSON);
+                    }
+                    fileReader.readAsDataURL(fileResize);
+                });
+            });
         })
 
+        function loadCacheImages() {
+            let data = getLocalStorage(key);
+            if (!data) return;
+            let imgJSON = {
+                'src': data.image.data,
+                'size': data.image.size
+            }
+            appendToAlbum(imgJSON);
+        }
+
         function appendToAlbum(imgJSON) {
-            if (!imgJSON || imgJSON.src==='') return;
+            if (!imgJSON || imgJSON.src === '') return;
             const hiddenObjId = $('#liHidden');
             let liClone = hiddenObjId.clone();
             let num = $('#ul-album li').length + 1;
             liClone.attr('id', 'album-li-' + num);
-            liClone.find('img').css({width: imgJSON.width, height: imgJSON.height}).attr('src', imgJSON.src);
+            liClone.find('img').css({ width: imgJSON.size.width, height: imgJSON.size.height }).attr('src', imgJSON.src);
             $('#ul-album').prepend(liClone);
             liClone.css('display', 'block');
-
-            console.log(liClone);
         }
 
     </script>
