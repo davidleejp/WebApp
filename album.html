@@ -14,7 +14,8 @@
     <script src="./js/main.js?ver=2.8"></script>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
     <style>
-        #ul-menu {
+        #ul-menu,
+        #ul-album {
             margin-bottom: 8px;
         }
 
@@ -89,11 +90,33 @@
     <script>
 
         $(function () {
-            $('#fileCamera').on('change', () => {
-                var files = this.files;
-                console.log(files);
+            $('#fileCamera').change((event) => {
+                const files = $('#fileCamera').prop('files');
+                if (!files || files.length === 0) return;
+
+                let file = files[0];
+                let imgJSON = {
+                    'src': window.URL.createObjectURL(file),
+                    'width': '100px',
+                    'height': '100px'
+                }
+                appendToAlbum(imgJSON);
+                // $('#imgTest').attr('src', window.URL.createObjectURL(file));
             })
         })
+
+        function appendToAlbum(imgJSON) {
+            if (!imgJSON || imgJSON.src==='') return;
+            const hiddenObjId = $('#liHidden');
+            let liClone = hiddenObjId.clone();
+            let num = $('#ul-album li').length + 1;
+            liClone.attr('id', 'album-li-' + num);
+            liClone.find('img').css({width: imgJSON.width, height: imgJSON.height}).attr('src', imgJSON.src);
+            $('#ul-album').prepend(liClone);
+            liClone.css('display', 'block');
+
+            console.log(liClone);
+        }
 
     </script>
 </head>
@@ -119,6 +142,13 @@
             <li><button class="buttonBig blue">添付</button></li>
         </ul>
         <ul class="list" id="ul-album">
+            <li style="display: none" id="liHidden">
+                <div class="div-photo inline"><img /></div>
+                <div class="div-comment inline">
+                    <div class="div-comment-updated"></div>
+                    <div class="div-comment-content"></div>
+                </div>
+            </li>
             <li>
                 <div class="div-photo inline">
                     <img height="148px"
@@ -162,9 +192,11 @@
                 </div>
             </li>
         </ul>
+
         <a href="./home.html">作業一覧</a>
         &nbsp;
         <a href="line://nv/chat">Line起動</a>
+        <img id="imgTest" />
     </div>
     <div class="footer"></div>
 </body>
