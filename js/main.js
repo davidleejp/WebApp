@@ -1,7 +1,6 @@
 
 const keyLastRequestUrl = 'cache-web-last';
 
-
 // LocalStorageから最終リクエストのURLを取得
 var lastRequestUrl = '';
 function getLastRequestURL() {
@@ -19,6 +18,21 @@ function getLastRequestURL() {
 // 最終リクエストのURLをLocalStorageに保存
 function setLastRequestURL(url) {
     setLocalStorage(keyLastRequestUrl, url)
+}
+
+// LocalStorage情報取得
+function searchLocalStorage(searchKey){
+    if (!searchKey) searchKey = '';
+    searchKey = searchKey.toLowerCase();
+    return Object.keys(localStorage).reduce(function(arr, key) {
+        if (key.toLowerCase().indexOf(searchKey) !== -1) {
+            let val = getLocalStorage(key);
+            if (val) {
+                arr[key] = val;
+                return arr;
+            }
+        }
+    }, {});
 }
 
 // LocalStorage情報取得

@@ -66,9 +66,10 @@ function convertBlob(base64, callback) {
             blob = blobBuilder.getBlob('image/jpg');
         }
     }
-    callback(new window.File([blob], guid() + '.jpg', { type: 'image/jpg' }));
+    callback(new window.File([blob], getGuid() + '.jpg', { type: 'image/jpg' }));
 }
 
+// 指定最大サイズにより、写真の等比率サイズを算出
 function getResize(normalSize, maxSize) {
     const {width, height} = normalSize;
     if (width > maxSize.width || height > maxSize.height) {
@@ -78,9 +79,23 @@ function getResize(normalSize, maxSize) {
     return {width: normalSize.width, height: normalSize.height, resized: false};
 }
 
-function guid() {
+// GUID文字列取得
+function getGuid() {
     return 'xxxxxxxx-xxxx-4xxx-yxxx-xxxxxxxxxxxx'.replace(/[xy]/g, function(c) {
       var r = Math.random()*16|0, v = c == 'x' ? r : (r&0x3|0x8);
       return v.toString(16);
     });
-  }
+}
+
+// YYYYMMDDHHmmssfff文字列取得
+function getDateTimeFormatString() {
+    var now = new Date();
+    var res = '' + now.getFullYear() + padZero(now.getMonth() + 1) + padZero(now.getDate()) + padZero(now.getHours()) + 
+        padZero(now.getMinutes()) + padZero(now.getSeconds());
+    return res;
+}
+
+//先頭ゼロ付加
+function padZero(num) {
+    return (num < 10 ? '0' : '') + num;
+}

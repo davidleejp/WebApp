@@ -12,8 +12,8 @@
         content="width=device-width,initial-scale=1.0,minimum-scale=1.0,maximum-scale=1.0,user-scalable=no" />
     <link rel="stylesheet" href="./style/main.css" />
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
-    <script src="./js/main.js?ver=3.0"></script>
-    <script src="./js/photo_api.js?ver=3.0"></script>
+    <script src="./js/main.js?ver=3.1"></script>
+    <script src="./js/photo_api.js?ver=3.1"></script>
     <style>
         #ul-menu, #ul-album {
             margin-bottom: 8px;
@@ -128,19 +128,20 @@
                         }
                         let expire = new Date();
                         expire = expire.setDate(expire.getDate() + 7); // 1週間後無効にする
-                        setLocalStorage(key, data, expire);
+                        setLocalStorage(key + '-time$' + getDateTimeFormatString, data, expire); // localStorageに格納する
 
                         let imgJSON = {
                             'src': blob,
                             'size': resize
                         }
-                        appendToAlbum(imgJSON);
+                        appendToAlbum(imgJSON); // 写真をアルバイムに追加する
                     }
                     fileReader.readAsDataURL(fileResize);
                 });
             });
         })
 
+        // localStorageに格納していた写真をアルバイムに再度表示する
         function loadCacheImages() {
             let data = getLocalStorage(key);
             if (!data) return;
@@ -149,13 +150,16 @@
                 'size': data.image.size
             }
             appendToAlbum(imgJSON);
+            let kv = searchLocalStorage(key);
+            console.log(kv);
         }
 
+        // 写真をアルバイムに追加する
         function appendToAlbum(imgJSON) {
             if (!imgJSON || imgJSON.src === '') return;
             const hiddenObjId = $('#liHidden');
             let liClone = hiddenObjId.clone();
-            let num = $('#ul-album li').length + 1;
+            let num = $('#ul-album li').length;
             liClone.attr('id', 'album-li-' + num);
             liClone.find('img').css({ width: imgJSON.size.width, height: imgJSON.size.height }).attr('src', imgJSON.src);
             $('#ul-album').prepend(liClone);
@@ -175,7 +179,7 @@
     <div class="content">
         <ul class="list" id="ul-menu">
             <li>
-                <a class="buttonBig file orange" id="btnCamera" name="btnCamera">
+                <a class="buttonBig orange" id="btnCamera" name="btnCamera">
                     写真撮影
                     <input name="fileCamera" id="fileCamera" class="input-file-hidden" type="file" accept="image/*"
                         capture="user" />

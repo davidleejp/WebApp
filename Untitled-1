@@ -1,0 +1,14 @@
+構築手順
+
+1. jdk8インストール
+2. netbeans8.2インストール
+3. glassFish4.1.2を 適当なフォルダに配置
+  glassfish/domains/domain/lib に sqljdbc42.jar を配置
+  glassfish/domain/domain1/config/domain.xmlを上のフォルダにあるものと差し替え
+4. glassFish環境構築.xlsを参考に、glassFishをnetbeansから起動する。
+5. ソースコード取得
+  netbeansのチーム → subversion から以下をチェックアウト
+  https://13.114.199.1/svn/kandenko/genba_shien/branches/dev1910 
+6. netbeansからビルド→glassFishにデプロイ
+  ログイン画面 ： http://localhost:8080/auth/signin.html
+  が出ればOKです。
